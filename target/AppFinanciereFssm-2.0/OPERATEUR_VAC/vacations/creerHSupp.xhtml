@@ -1,0 +1,170 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+       <ui:composition template="./../templateTest.xhtml">
+
+
+
+
+            <ui:define name="content">
+
+                <div class="x_content" style="display: block;">
+
+                    <p>Suivre les etapes pour créer un dossier des heures supplementaires</p>
+
+
+                    <h:form id="form1">
+
+                        <p:wizard flowListener="#{dossierprovisoirController.onFlowProcess}" style="font-size: 14px;">
+                            <p:tab id="personal" title="Intervenant">
+                                <p:panel header="Entrer les informations de l'intervenant" id="upd">
+                                    <p:messages />
+                                    <p:panelGrid columns="2" >
+                                        <p:outputLabel value="CIN PPR : " for="cinPpr" />
+                                        <p:inputText id="cinPpr" value="#{dossierprovisoirController.intervenant.cinPpr}" title="Entrer CIN PPR" required="true" requiredMessage="Entrer CIN PPR" >
+                                            <p:ajax event="blur" update=":growl, upd" listener="#{dossierprovisoirController.handleBlurEvent}" />
+                                        </p:inputText>
+                                        <p:outputLabel value="Nom complet" for="nomComplet" />
+                                        <p:inputText id="nomComplet" value="#{dossierprovisoirController.intervenant.nomComplet}" title="#{bundle.CreateIntervenantTitle_nomComplet}" />
+                                        <p:outputLabel value="Nom Arabe" for="nomArabe" />
+                                        <p:inputText id="nomArabe" value="#{dossierprovisoirController.intervenant.nomArabe}" title="#{bundle.CreateIntervenantTitle_nomArabe}" />
+                                        <p:outputLabel value="telephone" for="telephone" />
+                                        <p:inputText id="telephone" value="#{dossierprovisoirController.intervenant.telephone}" title="#{bundle.CreateIntervenantTitle_telephone}" />
+                                        <p:outputLabel value="email" for="mail" />
+                                        <p:inputText id="mail" value="#{dossierprovisoirController.intervenant.mail}" title="#{bundle.CreateIntervenantTitle_mail}" />
+                                        <p:outputLabel value="Banque : " for="banque" />
+                                        <p:inputText id="banque" value="#{dossierprovisoirController.comptebc.bc}" title="banque" />
+                                        <p:outputLabel value="RIP : " for="rip" />
+                                        <p:inputText id="rip" value="#{dossierprovisoirController.comptebc.rib}" title="Rip" />
+                                        
+                                    </p:panelGrid>
+                                </p:panel>
+                            </p:tab>
+
+
+                            <p:tab id="address" title="Heures Supp">
+                                <p:panel header="entrer les détails du vacataire">
+                                    <p:messages />
+                                    <p:panelGrid columns="2">
+
+                                        <p:outputLabel value="Nombre heures : " for="nbrHeures" />
+                                        <p:inputText id="nbrHeures" value="#{dossierprovisoirController.dossierhsupp.nbrHeures}" title="#{bundle.CreateDossierhsuppTitle_nbrHeures}" />
+                                        <p:outputLabel value="Mois : " for="mois" />
+                                        <h:selectOneMenu id="mois" value="#{dossierprovisoirController.dossierhsupp.mois}" styleClass="form-control">
+                                            <f:selectItem itemValue="Janvier" />
+                                            <f:selectItem itemValue="Février" />
+                                            <f:selectItem itemValue="Mars" />
+                                            <f:selectItem itemValue="Avril" />
+                                            <f:selectItem itemValue="Mai" />
+                                            <f:selectItem itemValue="Juin" />
+                                            <f:selectItem itemValue="Juillet" />
+                                            <f:selectItem itemValue="Août" />
+                                        </h:selectOneMenu>
+                                        <p:outputLabel value="Semestre" for="semestre" />
+                                        <p:inputText id="semestre" value="#{dossierprovisoirController.dossierhsupp.semestre}" title="#{bundle.CreateDossierhsuppTitle_semestre}" />
+                                       
+                                        <p:outputLabel value="Grade : " for="idGrade" />
+                                        <h:selectOneMenu id="idGrade" value="#{dossierprovisoirController.dossierhsupp.idGrade}"  styleClass="form-control" >
+                                            <f:selectItems value="#{graddiplomeController.itemsAvailableSelectOne}"
+                                                           var="idGradeItem"
+                                                           itemValue="#{idGradeItem}"
+                                                           itemLabel="#{idGradeItem.intituleGrade}"/>
+                                        </h:selectOneMenu>
+
+                                    </p:panelGrid>
+                                </p:panel>
+                            </p:tab>
+
+                            <p:tab id="detail" title="Détails">
+                                <p:panel header="Entrer les informations de l'intervenant">
+                                    <p:messages />
+                                    <p:panelGrid columns="2" >
+                                        <p:outputLabel value="salaire Annuelle Brut : " for="salaireAnnuelleBrut" />
+                                        <p:inputText id="salaireAnnuelleBrut" value="#{dossierprovisoirController.dossierhsupp.salaireAnnuelleBrut}" title="#{bundle.CreateDetailTitle_salaireAnnuelleBrut}" />
+                                        <p:outputLabel value="allocation Familiale : " for="allocationFamiliale" />
+                                        <p:inputText id="allocationFamiliale" value="#{dossierprovisoirController.dossierhsupp.allocationFamiliale}" title="#{bundle.CreateDetailTitle_allocationFamiliale}" />
+                                        <p:outputLabel value="brut Additionner : " for="brutAdditionner" />
+                                        <p:inputText id="brutAdditionner" value="#{dossierprovisoirController.dossierhsupp.brutAdditionner}" title="#{bundle.CreateDetailTitle_brutAdditionner}" />
+                                        <p:outputLabel value="AMO : " for="amo" />
+                                        <p:inputText id="amo" value="#{dossierprovisoirController.dossierhsupp.amo}" title="#{bundle.CreateDetailTitle_amo}" />
+                                        <p:outputLabel value="Retenu CMR : " for="retenuCmr" />
+                                        <p:inputText id="retenuCmr" value="#{dossierprovisoirController.dossierhsupp.retenuCmr}" title="#{bundle.CreateDetailTitle_retenuCmr}" />
+                                        <p:outputLabel value="Mutuelle Mutialiste : " for="mutuelleMutialiste" />
+                                        <p:inputText id="mutuelleMutialiste" value="#{dossierprovisoirController.dossierhsupp.mutuelleMutialiste}" title="#{bundle.CreateDetailTitle_mutuelleMutialiste}" />
+                                        <p:outputLabel value="Mutuelle Caisse : " for="mutuelleCaisse" />
+                                        <p:inputText id="mutuelleCaisse" value="#{dossierprovisoirController.dossierhsupp.mutuelleCaisse}" title="#{bundle.CreateDetailTitle_mutuelleCaisse}" />
+                                        <p:outputLabel value="Rachat CMR : " for="rachatCmr" />
+                                        <p:inputText id="rachatCmr" value="#{dossierprovisoirController.dossierhsupp.rachatCmr}" title="#{bundle.CreateDetailTitle_rachatCmr}" />
+                                        <p:outputLabel value="Somme déduire : " for="sommeDeduire" />
+                                        <p:inputText id="sommeDeduire" value="#{dossierprovisoirController.dossierhsupp.sommeDeduire}" title="#{bundle.CreateDetailTitle_sommeDeduire}" />
+                                        <p:outputLabel value="Nombre enfants : " for="nbrEnfant" />
+                                        <p:inputText id="nbrEnfant" value="#{dossierprovisoirController.dossierhsupp.nbrEnfant}" title="#{bundle.CreateDetailTitle_nbrEnfant}" />
+                                        <p:outputLabel value="Charge familial : " for="chargeFamiliale" />
+                                        <p:inputText id="chargeFamiliale" value="#{dossierprovisoirController.dossierhsupp.chargeFamiliale}" title="#{bundle.CreateDetailTitle_chargeFamiliale}" />
+                                        <p:outputLabel value="IR Source : " for="irSource" />
+                                        <p:inputText id="irSource" value="#{dossierprovisoirController.dossierhsupp.irSource}" title="#{bundle.CreateDetailTitle_irSource}" />
+                                        <p:outputLabel value="IR Complement : " for="irComplement" />
+                                        <p:inputText id="irComplement" value="#{dossierprovisoirController.dossierhsupp.irComplement}" title="#{bundle.CreateDetailTitle_irComplement}" />
+                                        <p:outputLabel value="NET : " for="net" />
+                                        <p:inputText id="net" value="#{dossierprovisoirController.dossierhsupp.net}" title="#{bundle.CreateDetailTitle_net}" />
+                                        <p:outputLabel value="IR : " for="ir" />
+                                        <p:inputText id="ir" value="#{dossierprovisoirController.dossierhsupp.ir}" title="#{bundle.CreateDetailTitle_ir}" />
+                                        <p:outputLabel value="Echelle : " for="echelle" />
+                                        <p:inputText id="echelle" value="#{dossierprovisoirController.dossierhsupp.echelle}" title="#{bundle.CreateDetailTitle_echelle}" />
+                                        <p:outputLabel value="Echelon : " for="echelon" />
+                                        <p:inputText id="echelon" value="#{dossierprovisoirController.dossierhsupp.echelon}" title="#{bundle.CreateDetailTitle_echelon}" />
+                                    </p:panelGrid>
+                                </p:panel>
+                            </p:tab>
+
+                            <p:tab id="confirm" title="Confirmation">
+                                <p:panel header="Confirmation">
+                                    <h:panelGrid id="confirmation" columns="2" cellpadding="20" cellspacing="15" style="font-size: 14px;color: #96A9B9;width: 30%;">
+                                        
+                                            <p:outputLabel value="CIN PPR :  " />
+                                            <p:outputLabel value="#{dossierprovisoirController.intervenant.cinPpr}" />
+
+                                            <p:outputLabel value="Nom complet :  " />
+                                            <p:outputLabel value="#{dossierprovisoirController.intervenant.nomComplet}" />
+
+                                            <p:outputLabel value="Nom arabe :  " />
+                                            <p:outputLabel value="#{dossierprovisoirController.intervenant.nomArabe}" />
+                                        
+                                        <p:separator /><br />
+                                        
+                                            <p:outputLabel value="Nombre heures :  " />
+                                            <p:outputLabel value="#{dossierprovisoirController.dossierhsupp.nbrHeures}" />
+
+                                            <p:outputLabel value="NET : " />
+                                            <p:outputLabel value="#{dossierprovisoirController.dossierhsupp.net}" />
+
+                                            <p:outputLabel value="IR :  " />
+                                            <p:outputLabel value="#{dossierprovisoirController.dossierhsupp.ir}" />
+                                        
+                                    </h:panelGrid>
+                                    <br />
+                                    <br />
+                                    <p:commandButton actionListener="#{dossierprovisoirController.wizaedfinish2()}" value="Terminer" update=":growl" process="@this" style="background: #67c2ef;color: white;"/>
+                                    <br />
+                                    <br />
+                                </p:panel>
+                            </p:tab>
+
+                        </p:wizard>
+                    </h:form>
+
+                </div>
+
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString language="SQL">
+		<![CDATA[select * from deplacement]]>
+	</queryString>
+	<field name="idDeplacement" class="java.lang.Integer"/>
+	<field name="cinPpr" class="java.lang.String"/>
+	<field name="idUser" class="java.lang.Integer"/>
+	<field name="idDotationSect" class="java.lang.Integer"/>
+	<field name="nbrJours" class="java.lang.Integer"/>
+	<field name="dateDepart" class="java.sql.Timestamp"/>
+	<field name="dateArrive" class="java.sql.Timestamp"/>
+	<field name="annee" class="java.lang.Integer"/>
+	<field name="motif" class="java.lang.String"/>
+	<field name="dateCreation" class="java.sql.Timestamp"/>
+	<field name="lastUptDt" class="java.sql.Timestamp"/>
+	<field name="indice" class="java.lang.Integer"/>
+	<field name="echelle" class="java.lang.Integer"/>
+	<field name="grade" class="java.lang.String"/>
+	<field name="etat" class="java.lang.Integer"/>
+	<field name="observation" class="java.lang.String"/>
+	<field name="dateEtat" class="java.sql.Date"/>
+	<field name="datePiece" class="java.sql.Date"/>
+	<field name="intutilePiece" class="java.lang.String"/>
+	<field name="kmRoute" class="java.lang.Double"/>
+	<field name="kmPiste" class="java.lang.Double"/>
+	<field name="mntkm" class="java.lang.Double"/>
+	<field name="marque" class="java.lang.String"/>
+	<field name="puissance" class="java.lang.Integer"/>
+	<field name="montantDepExt" class="java.lang.Double"/>
+	<field name="montantDepInt" class="java.lang.Double"/>
+	<field name="typedep" class="java.lang.Integer"/>
+	<field name="nomPays" class="java.lang.String"/>
+	<field name="ville" class="java.lang.String"/>
+	<field name="justification" class="java.lang.String"/>
+	<field name="piece1" class="java.lang.String"/>
+	<field name="piece2" class="java.lang.String"/>
+	<field name="piece3" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="126" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="79"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="0" y="0" width="185" height="39"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[UNIVERSITE CADI AYYAD         FACULTE DES SCIENCES         ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="39" width="185" height="29"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SEMLALIA-MARRAKECH]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="19" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[BORDEREAU  N°    ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="407" y="48" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Du:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="79" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[BORDEREAU DE TRANSMISSION DES ORDONNANCES DE PAIMENT ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="106" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXERCICE 2016]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="50">
+			<staticText>
+				<reportElement x="429" y="30" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[typedep]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="323" splitType="Stretch">
+			<textField>
+				<reportElement x="429" y="0" width="100" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{typedep}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

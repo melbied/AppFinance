@@ -1,0 +1,161 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body onload="#{boncommandeController.allItemesValides}">
+
+        <ui:composition template="../../templateTest.xhtml">
+<ui:define name="titlepanelLeft">
+               Gestion de paiement 
+            </ui:define>
+
+         
+
+            <ui:define name="titlepanel">
+               Gerer le paiement des bons de commandes
+            </ui:define>
+
+            <ui:define name="content">
+ <ul class="nav nav-tabs" id="myTab">
+     
+      <li class="active"><a href="#PAYER">Imprimer l'ordre de paiement</a></li>
+     <li><a href="#IMPRESSIONOV">Impression OV</a></li>
+ 
+  <li><a href="#BCP">Consulter les commandes payées</a></li>
+  <li><a href="#non">Consulter les bons non payées</a></li>
+  
+</ul>
+                <div class="tab-content">
+  <div class="tab-pane active" id="PAYER">    
+      
+                <h:form id="LigneCommandeCreateForm" >
+                    <p:growl id="message" life="2000" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" widgetVar="confirmation" closeOnEscape="false" closable="true">
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" onclick="confirmation.hide()" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" onclick="confirmation.hide()" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                    <p:dialog id="dialogue" header="Gestion Bon Commande" widgetVar="BoncommandeViewDialog" showEffect="explode"    modal="true">
+                       
+                        <center> 
+                            <h:panelGroup id="display" >
+                            <p:panelGrid columns="2" rendered="#{boncommandeController.current != null}">
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_idBC}" />
+                                <h:outputLabel value="#{boncommandeController.current.idBC}" title="#{bundle.ViewBoncommandeTitle_idBC}" />
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_dateCommande}" />
+                                <h:outputLabel value="#{boncommandeController.current.dateCommande}" title="#{bundle.ViewBoncommandeTitle_dateCommande}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputLabel>
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_tva}" />
+                                <h:outputLabel value="#{boncommandeController.current.tva}" title="#{bundle.ViewBoncommandeTitle_tva}" />
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_dateReception}" />
+                                <h:outputLabel value="#{boncommandeController.current.dateReception}"  title="#{bundle.ViewBoncommandeTitle_dateReception}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputLabel>
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_etat}" />
+                                <h:outputLabel value="#{boncommandeController.current.etat}" title="#{bundle.ViewBoncommandeTitle_etat}" />
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_montant}" />
+                                <h:outputLabel value="#{boncommandeController.current.montant}" title="#{bundle.ViewBoncommandeTitle_montant}" />
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_type}" />
+                                <h:outputLabel value="#{boncommandeController.current.type}" title="#{bundle.ViewBoncommandeTitle_type}" />
+                                <h:outputLabel value="Fournisseur" />
+                                <h:outputLabel value="#{fournisseurController.getFournisseur(boncommandeController.current.idFournisseur).nom}" title="Fournisseur" />
+                            </p:panelGrid>
+                            <p:panelGrid columns="2"  >
+                               
+                                <p:panel><h:commandButton  action ="#{boncommandeController.PAYERbc(boncommandeController.current.idBC)}" actionListener="#{boncommandeController.PDFOP}" value="Imprimer le bon de paiement" styleClass="btn btn-success" >
+                                    
+                                    </h:commandButton>
+                                </p:panel>
+
+                               
+
+                            </p:panelGrid>
+                        </h:panelGroup>
+                        </center>
+                    </p:dialog>
+                    
+                    <div class="col-md-12 col-sm-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Liste des bons de commande réceptionné à payé 
+                            </div>
+                            <div class="panel-body">
+                             
+                                <div class="table-responsive">
+                                    <div class="table-responsive">
+                                        <p:dataTable id="datalist" value="#{boncommandeController.allBCrecuETnonpaye}" var="item" style="border:solid 1px"
+                                                     selectionMode="single" selection="#{boncommandeController.current}"
+                                                     paginator="true"
+                                                     rowKey="#{item.idBC}"
+                                                     >
+                                            <p:ajax event="rowSelect" listener="#{boncommandeController.remplireFormulaireGBC()}" update="@form" process="@this"/>
+                                            <p:ajax event="rowUnselect" listener="#{boncommandeController.remplireFormulaireGBC()}" update="@form" process="@this"/>
+                                            
+                                            <p:column headerText="Num bon de commande">
+                                                <h:outputText value="#{item.idBC}"/>
+                                            </p:column>
+                                            <p:column headerText="Demandeur">
+                                                <h:outputText value="#{item.nomComplet}"/>
+                                            </p:column>
+
+                                            <p:column headerText="Date commande">
+                                                <h:outputText value="#{item.dateCommande}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column headerText="Date reception">
+                                                <h:outputText value="#{item.dateReception}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                                </h:outputText>
+                                            </p:column>
+                                            <p:column headerText="#{bundle.ListBoncommandeTitle_etat}">
+                                                <h:outputText value="#{item.etat}"/>
+                                            </p:column>
+
+                                            
+                                            <p:column headerText="Action">
+                                                <p:commandButton id="ajaxdelete"  action="#{boncommandeController.performDestroyBCG()}" icon="ui-icon-trash" class="btn btn-danger btn-lg" update="@form">
+                                                    <p:confirm header="Confirmation de suppression" message="voulez-vous vraiment supprimer ces informations?" icon="ui-icon-alert" />
+                                                </p:commandButton>
+                                                <p:commandButton icon="ui-icon-search"  action="#{boncommandeController.remplireFormulaireGBC()}" type="button" onclick="PF('BoncommandeViewDialog').show();"  class="btn btn-success btn-lg" id="viewButton"  disabled="#{empty boncommandeController.current}" >
+                                                </p:commandButton>
+                                            </p:column>
+                                               
+                                        </p:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form> 
+      
+  </div>
+
+ <div class="tab-pane" id="BCP">
+    <ui:include src="BCPaye.xhtml"/>
+  </div>
+  
+   <div class="tab-pane" id="IMPRESSIONOV"> <ui:include src="ImprimerOV.xhtml"/></div>
+
+<div class="tab-pane" id="non">
+   jj
+    </div>
+  </div>
+                <script>
+                    $('#myTab a').click(function (e) {
+                  e.preventDefault();
+                  $(this).tab('show');
+                })
+
+                </script>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

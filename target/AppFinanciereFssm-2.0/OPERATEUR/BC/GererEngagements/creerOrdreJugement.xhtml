@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+   <ui:composition template="./../../templateTest.xhtml">
+
+
+
+        <ui:define name="content">
+              <h:form  id="CreerOJ">
+             <div class="col-md-12 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="background-color: green;">
+                        Creer un ordre de jugement :
+                    </div>
+                    <div class="panel-body" >
+          
+                <center>
+                    <ui:repeat value="#{OJ.values}" var="val">
+                            <h:inputText value="#{val}" />
+                    <br />
+                     </ui:repeat>
+                        <h:commandButton value="Extend">
+                            <f:ajax  listener="#{OJ.extend}"  render="@form" />
+                        </h:commandButton>
+                                <h:commandButton action="#{OJ.submit}" value="Save" />
+                </center>
+                        
+                    </div></div></div>
+                    
+            </h:form>       
+        </ui:define>
+    </ui:composition>
+
+</html>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templateTest.xhtml">
+ <ui:define name="titlepanelLeft">
+               Ajout d'un vacataire/Hsupp
+            </ui:define>
+
+         
+
+            <ui:define name="titlepanel">
+               Ajout d'un vacataire/Hsupp
+            </ui:define>
+
+
+           
+            <ui:define name="content">
+
+                <div class="x_content">
+                  
+                
+                <h:form>
+                <p:dataTable id="datatable" class="table table-striped table-bordered dataTable no-footer"  var="item" value="#{dossierprovisoirController.dos_prov_false()}" sortMode="multiple" >
+        <f:facet class="text-muted font-13 m-b-30" name="header">
+            <h4 class="text-muted font-13 m-b-30">Liste des intervenants créés par le chef de département!</h4>
+        </f:facet>
+        <p:column headerText="Nom complet" sortBy="#{item.nomComplet}" class="sorting_asc" rowspan="1" colspan="1" style="width: 159px;">
+            <h:outputText value="#{item.nomComplet}" />
+        </p:column>
+ 
+        <p:column headerText="Module" sortBy="#{item.module}">
+            <h:outputText value="#{item.module}" />
+        </p:column>
+ 
+        <p:column headerText="Nombre d'heures" sortBy="#{item.nbrHeures}">
+            <h:outputText value="#{item.nbrHeures}" />
+        </p:column>
+ 
+        <p:column headerText="Grade" sortBy="#{item.idGrade.intituleGrade}">
+            <h:outputText value="#{item.idGrade.intituleGrade}" />
+        </p:column>
+                     <p:column headerText="Date debut" sortBy="#{item.dateDebut}">
+            <h:outputText value="#{item.dateDebut}" />
+        </p:column>
+                     <p:column headerText="Date fin" sortBy="#{item.dateFin}">
+                         <h:outputText value="#{item.dateFin}" />
+        </p:column>
+                    <p:column headerText="" >
+                          <p:commandButton actionListener="#{dossierprovisoirController.initredirection(item, 1)}" value="Créer une vacation" ajax="false" style="background: #64c497;color: white;"/>
+                                                <p:commandButton actionListener="#{dossierprovisoirController.initredirection(item, 2)}" value="Créer des heures Supp" ajax="false" style="background: #64c497;color: white;"/>
+                                           </p:column>
+    </p:dataTable>
+                </h:form>
+                    </div>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>
+

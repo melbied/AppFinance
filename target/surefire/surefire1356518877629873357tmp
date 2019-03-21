@@ -1,0 +1,8 @@
+#surefire
+#Thu Jun 15 22:58:08 WET 2017
+maven.ext.class.path=C\:\\Program Files\\NetBeans 8.2\\java\\maven-nblib\\netbeans-eventspy.jar
+user.dir=C\:\\Users\\Marouane\\Documents\\NetBeansProjects\\AppFinanciereFssm
+file.encoding=UTF-8
+localRepository=C\:\\Users\\Marouane\\.m2\\repository
+netbeans.deploy=true
+basedir=C\:\\Users\\Marouane\\Documents\\NetBeansProjects\\AppFinanciereFssm

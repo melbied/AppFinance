@@ -1,0 +1,210 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body onload="#{boncommandeController.allItemesBCG}">
+
+        <ui:composition template="../../templateTest.xhtml">
+ 
+        <ui:define name="titlepanelLeft">
+               Valider les besoins
+            </ui:define>
+
+         
+
+            <ui:define name="titlepanel">
+               Valider les besoins
+            </ui:define>
+
+            <ui:define name="content">
+
+      
+
+ <ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#EB">Valider Expressions de besoin</a></li>
+  <li><a href="#FBC">Valider les fournisseurs</a></li>
+  <li><a href="#BC">Valider les prix</a></li>
+  <li><a href="#IMPRESSION">Impression des BC </a></li>
+</ul>
+ 
+<div class="tab-content">
+  <div class="tab-pane active" id="EB">          
+      
+      
+      <h:form id="LigneCommandeCreateForm">
+            <p:growl id="message" life="2000" />
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" widgetVar="confirmation" closeOnEscape="false" closable="true">
+                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" onclick="confirmation.hide()" icon="ui-icon-check" />
+                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" onclick="confirmation.hide()" icon="ui-icon-close" />
+            </p:confirmDialog>
+            <p:dialog id="dialogue1" header="Gestion Expression Besoins" widgetVar="formUpdate" showEffect="explode" height="400" modal="true">
+                <div class="panel-body">
+                    <center><table class='tab_form' style="width:450px;height:400px; margin:0px;padding:0px; border-width: 5px; text-align: center;align-content: center;">
+                            <tr> 
+                                <td class="olab"><h:outputLabel value="SecteurPrincipal:" for="idSP" /></td>
+                                <td class="olab">
+                                 
+                                    <h:outputText value="#{boncommandeController.secteurP}" /> 
+                                    
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td class="olab"><h:outputLabel value="#{bundle.CreateSecteurLabel_intituleSecteur}" for="intituleSecteur" /></td>
+                                <td class="olab">
+        
+                                     <h:outputText value="#{boncommandeController.secteur}" /> 
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td class="olab"><h:outputLabel value="Compte budgetaire" for="idCompte" /></td>
+                                <td class="olab">
+                                    <p:autoComplete dropdown="true" id="idCompte" value="#{boncommandeController.cpt}" completeMethod="#{compteController.completeText}" title="#{bundle.CreateBudgetTitle_budgetPK_idCompte}"   
+                                                     var="cmp" itemLabel="#{cmp.idCompte}" itemValue="#{cmp}" forceSelection="true">
+                                        <p:column style="width:10%">
+                                            <h:outputText value="#{cmp.idCompte}" />
+                                        </p:column>
+
+                                        <p:column>
+                                            <h:outputText value="#{cmp.intitule}" /> 
+                                        </p:column>
+                                        <p:ajax event="itemSelect" listener="#{boncommandeController.subjectSelectionChanged()}" update="@form" process="@form" />
+                                        <p:ajax event="change" listener="#{boncommandeController.subjectSelectionChanged()}" update="@form" process="@form" oncomplete="callRemote()"/>
+                                        <p:remoteCommand name="callRemote" partialSubmit="true" process="@this" action="#{boncommandeController.remplireFormulaireGBC()}" />
+                                    </p:autoComplete>
+                  
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="olab" ><p:outputLabel value="Num commande" for="idBC" /></td>
+                                <td class="olab">
+                                    <p:outputLabel  id="idBC" value="#{boncommandeController.current.idBC}"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="olab" >
+                                    <p:outputLabel value="#{bundle.CreateBoncommandeLabel_dateCommande}" for="dateCommande" />
+                                </td>
+                                <td class="olab">
+                                    <h:outputLabel id="dateCommande" value="#{boncommandeController.current.dateCommande}" title="#{bundle.CreateBoncommandeTitle_dateCommande}" >
+                                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                                    </h:outputLabel>
+                                </td>
+                            </tr>
+
+                            <tr> 
+                                <td class="olab"><p:outputLabel value="Reliquat Disponible:" for="montantR" /></td>
+                                <td class="olab"><p:outputLabel id="montantR" value="#{boncommandeController.reliquatDS}" title="#{bundle.CreateBoncommandeTitle_montant}" /></td>
+                            </tr>
+
+                            <tr>
+                                <td class="olab" ><p:outputLabel value="#{bundle.CreateBoncommandeLabel_type}" for="type" /></td>
+                                <td class="olab" >
+                                    <h:selectOneMenu id="type" value="#{boncommandeController.current.type}"  title="#{bundle.CreateBoncommandeTitle_type}" required="true"  style="width:155px" >
+                                        <f:selectItem itemLabel="Bon de Commande" itemValue="BC" />
+                                        <f:selectItem itemLabel="Lettre de Commande" itemValue="LC" />
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr> 
+                                <td class="olab"><p:outputLabel value="#{bundle.CreateBoncommandeLabel_etat}" for="etat" /></td>
+                                <td class="olab">
+                                    <h:selectOneMenu id="etat" value="#{boncommandeController.etat}" title="#{bundle.CreateBoncommandeTitle_etat}" style="width:155px" >
+                                        <f:selectItem itemLabel="validé" itemValue="validé" />
+                                        <f:selectItem itemLabel="non validé" itemValue="non validé" />
+                                    </h:selectOneMenu>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="olab">
+                                    <center>
+                                        <p:commandButton styleClass="btn btn-success" id="ajaxupdate" icon="ui-icon-pencil" action="#{boncommandeController.updateBC}" value="Modifier" class="btn btn-success btn-lg" update="@form">
+                                            <p:confirm  header="Confirmation de modification" message="voulez-vous vraiment modifier ces informations?" icon="ui-icon-alert" />
+                                         </p:commandButton>
+                                    </center>
+                                </td>
+
+                            </tr>
+                        </table></center>
+                </div>
+            </p:dialog>
+            <div class="col-md-12 col-sm-12">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <center>Liste Des Expressions de besoin à Valider</center>
+                    </div>
+                    <div class="panel-body">
+                
+                        <div class="table-responsive">
+                            <div class="table-responsive">
+                                <p:dataTable id="basicDT" value="#{boncommandeController.items}" 
+                                             filteredValue="#{boncommandeController.filteredItems}"
+                                             var="item" style="border:solid 1px"
+                                             selectionMode="single" selection="#{boncommandeController.current}"
+                                             paginator="true"
+                                             rowKey="#{item.idBC}"
+                                             widgetVar="bcTable"
+                                             >
+                                    <p:ajax event="rowSelect" listener="#{boncommandeController.remplireFormulaireGBC()}"  update="@form" process="@this"/>
+                                    <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Chercher :  " />
+                                        <p:inputText id="globalFilter" onkeyup="PF('bcTable').filter()" style="width:150px" placeholder="Entrer Mot clé"/>
+                                    </p:outputPanel>
+                                </f:facet>
+                                    <p:column headerText="N° Expression de besoin">
+                                        <h:outputText value="#{item.idBC}"/>
+                                    </p:column>
+                                      <p:column headerText="Demandeur">
+                                          <h:outputText value="#{item.nomComplet}"/>
+                                    </p:column>
+                                    <p:column headerText="Date demande">
+                                        <h:outputText value="#{item.dateCommande}">
+                                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                                        </h:outputText>
+                                    </p:column>
+                                    <p:column headerText="Etat">
+                                        <h:outputText value="#{item.etat}"/>
+                                    </p:column>
+                                    <p:column headerText="">
+                                        <p:commandButton icon="ui-icon-pencil" action="#{boncommandeController.remplireFormulaireGBC()}" type="button" onclick="PF('formUpdate').show();"  class="btn btn-success btn-lg" >
+                                        </p:commandButton>
+                                        <p:commandButton id="ajaxdelete"  action="#{boncommandeController.performDestroyBCG()}" icon="ui-icon-trash" class="btn btn-danger btn-lg" update="@form">
+                                            <p:confirm header="Confirmation de suppression" message="voulez-vous vraiment supprimer ces informations?" icon="ui-icon-alert" />
+                                        </p:commandButton>
+                                    </p:column>
+                                </p:dataTable>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+        </h:form>
+  
+  </div>
+    <div class="tab-pane" id="FBC">
+        <ui:include src="BCfournisseur.xhtml"/>
+  </div>
+  <div class="tab-pane" id="BC">
+        <ui:include src="BCValide.xhtml"/>
+  </div>
+  <div class="tab-pane" id="IMPRESSION"><ui:include src="ImprimerBC.xhtml"/></div>
+</div>
+                <script>
+                    $('#myTab a').click(function (e) {
+                  e.preventDefault();
+                  $(this).tab('show');
+                })
+
+                </script>
+                
+            </ui:define>
+            
+
+        </ui:composition>
+
+    </h:body>
+</html>

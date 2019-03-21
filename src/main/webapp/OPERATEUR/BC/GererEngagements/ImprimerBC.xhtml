@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition >
+
+        <h:form id="IMPRIMERBCCreateForm">
+                    <p:growl id="message" life="2000" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" widgetVar="confirmation" closeOnEscape="false" closable="true">
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" onclick="confirmation.hide()" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" onclick="confirmation.hide()" icon="ui-icon-close" />
+                    </p:confirmDialog>
+
+                    
+                    <div class="col-md-12 col-sm-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Liste Des Bon de Commande Validés
+                            </div>
+                            <div class="panel-body">
+                              
+                                <div class="table-responsive">
+                                    <div class="table-responsive">
+                                        <p:dataTable id="datalist" value="#{boncommandeController.allItemesVALIDE}" var="item" style="border:solid 1px"
+                                                     selectionMode="single" selection="#{boncommandeController.current}"
+                                                     paginator="true"
+                                                     rowKey="#{item.idBC}"
+                                                     >
+                                            <p:ajax event="rowSelect" listener="#{boncommandeController.remplireFormulaireGBC()}"  update="@form" process="@this"/>
+                                            <p:column headerText="N° BON Commande">
+                                                <h:outputText value="#{item.idBC}"/>
+                                            </p:column>
+                                            <p:column headerText="Fournisseur">
+                                                <h:outputText value="#{fournisseurController.getFournisseur(item.idFournisseur).nom}"/>
+                                            </p:column>
+                                            <p:column headerText="Demandeur">
+                                                <h:outputText value="#{item.nomComplet}"/>
+                                            </p:column>
+
+                                            <p:column headerText="#{bundle.ListBoncommandeTitle_dateCommande}">
+                                                <h:outputText value="#{item.dateCommande}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column headerText="#{bundle.ListBoncommandeTitle_etat}">
+                                                <h:outputText value="#{item.etat}"/>
+                                            </p:column>
+
+                                               <p:column headerText="Montant totale">
+                                                   <h:outputText value="#{item.montant}"/>
+                                            </p:column>
+                                            
+                                            <p:column headerText="Action">
+                                                <h:commandButton id="withIcon" value="PDF" actionListener="#{boncommandeController.PDBon}"  styleClass="btn btn-success" />
+                                               <h:commandButton styleClass="btn btn-success" actionListener="#{boncommandeController.DOCXBon}" value="Word" />
+                                            
+                                                
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form> 
+
+    </ui:composition>
+</html>

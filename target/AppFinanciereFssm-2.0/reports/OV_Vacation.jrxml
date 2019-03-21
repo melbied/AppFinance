@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OV_Vacation" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="6fd087a2-191b-4173-a7ab-6c4aa6adfe56">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="157"/>
+	<parameter name="montant" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nomComplet" class="java.lang.String"/>
+	<parameter name="banque" class="java.lang.String"/>
+	<parameter name="rip" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="147" splitType="Stretch">
+			<staticText>
+				<reportElement x="1" y="1" width="161" height="20" uuid="05061048-67d3-49dd-876e-174b48b8ac2a"/>
+				<text><![CDATA[    ROYAUME DU MAROC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="327" y="1" width="100" height="20" uuid="311ce847-fcfe-4131-9d6a-61a25a0d6f40"/>
+				<text><![CDATA[Marrakech le :]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="427" y="1" width="100" height="20" uuid="1b1ce0e6-1d2a-4424-bf72-ea555d1c3798"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<image>
+				<reportElement x="1" y="21" width="161" height="67" uuid="3b351b78-aba4-4492-9b2d-82845ea9d8c3"/>
+				<imageExpression><![CDATA["E:\\MOUNIR\\MNR Document\\Projet Semlalia\\Projet FSSM\\FSSMProject\\src\\main\\webapp\\resources\\tem3Ges\\images\\ov_img.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="1" y="88" width="161" height="59" uuid="61dbbeef-0baf-4634-b746-0ef762b466af"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Trésorerie Générale du Royaume
+Trésorerie Régionale de
+Marrakech
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="562" splitType="Stretch">
+			<staticText>
+				<reportElement x="68" y="10" width="335" height="25" uuid="fa57f6da-b5fe-40ca-a2ac-6aa192f0e414"/>
+				<textElement>
+					<font fontName="Times New Roman" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORDRE DE VIREMENT N°            /FSSM/]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="403" y="60" width="100" height="20" uuid="50981c3a-d12d-4bd9-a0b8-ec696e02abde"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{montant}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="17" y="90" width="331" height="20" uuid="5de46cee-e43f-404c-8237-805be787d5a8"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Compte n° :	310 450 10090 2900 43144 01 23 		]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="17" y="120" width="331" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f8f64dc9-7514-4a85-874c-1b567910be19"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Tenu à la Trésorerie Régionale de Marrakech	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="17" y="152" width="331" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="38fd051b-14b6-4484-9ce3-e3ececab503f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Au nom de 	: Faculté des Sciences Semlalia  de Marrakech]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="43" y="183" width="360" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="1f6bc301-251d-4d43-89ce-5311d2f13e52"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Par le débit du compte sus indiqué, veuillez virer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="17" y="224" width="145" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="2ac8e5ae-1aa4-4bf3-8019-f22ce60e7cea"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Au compte de :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="17" y="260" width="145" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="a8a035ee-bf83-4879-8a5c-e5a2e524bb31"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Ouvert chez : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="17" y="297" width="145" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="6969479f-6ad3-4d93-af4a-9a195e4a0ebd"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Sous numéro : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="344" width="240" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="6219fc32-9c7c-4160-95b2-c1d96a8e06a5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Objet du virement : Ordre de paiement n° 20174589	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="38" y="418" width="233" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="64ab9f85-af9f-4eb6-bde9-8048824dc0d4"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Le Sous – Ordonnateur ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="348" y="418" width="179" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="293be689-b4af-495d-b706-5628db12bac0"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Le Fondé de Pouvoirs]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="171" y="224" width="232" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="5b47a857-2b99-4ff0-a37f-09c0f11611dc"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomComplet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="171" y="260" width="232" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="369b8268-058e-4997-91e0-6257268758f3"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{banque}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="171" y="297" width="232" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d86e69eb-da93-427b-99ef-334bfbcc0de6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{rip}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="93" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

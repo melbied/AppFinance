@@ -1,0 +1,209 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="89"/>
+	<parameter name="compteDep" class="java.lang.String"/>
+	<parameter name="nom" class="java.lang.String"/>
+	<parameter name="bnc" class="java.lang.String"/>
+	<parameter name="numCmpt" class="java.lang.String"/>
+	<parameter name="somme" class="java.lang.String"/>
+	<queryString language="SQL">
+		<![CDATA[select * from deplacement]]>
+	</queryString>
+	<field name="idDeplacement" class="java.lang.Integer"/>
+	<field name="cinPpr" class="java.lang.String"/>
+	<field name="idUser" class="java.lang.Integer"/>
+	<field name="idDotationSect" class="java.lang.Integer"/>
+	<field name="nbrJours" class="java.lang.Integer"/>
+	<field name="dateDepart" class="java.sql.Timestamp"/>
+	<field name="dateArrive" class="java.sql.Timestamp"/>
+	<field name="annee" class="java.lang.Integer"/>
+	<field name="motif" class="java.lang.String"/>
+	<field name="dateCreation" class="java.sql.Timestamp"/>
+	<field name="lastUptDt" class="java.sql.Timestamp"/>
+	<field name="indice" class="java.lang.Integer"/>
+	<field name="echelle" class="java.lang.Integer"/>
+	<field name="grade" class="java.lang.String"/>
+	<field name="etat" class="java.lang.Integer"/>
+	<field name="observation" class="java.lang.String"/>
+	<field name="dateEtat" class="java.sql.Date"/>
+	<field name="datePiece" class="java.sql.Date"/>
+	<field name="intutilePiece" class="java.lang.String"/>
+	<field name="kmRoute" class="java.lang.Double"/>
+	<field name="kmPiste" class="java.lang.Double"/>
+	<field name="mntkm" class="java.lang.Double"/>
+	<field name="marque" class="java.lang.String"/>
+	<field name="puissance" class="java.lang.Integer"/>
+	<field name="montantDepExt" class="java.lang.Double"/>
+	<field name="montantDepInt" class="java.lang.Double"/>
+	<field name="typedep" class="java.lang.Integer"/>
+	<field name="nomPays" class="java.lang.String"/>
+	<field name="ville" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="160" splitType="Stretch">
+			<image>
+				<reportElement x="191" y="21" width="172" height="99"/>
+				<imageExpression><![CDATA["img.jpg"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="0" y="2" width="555" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[    ROYAUME DU MAROC]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="100" width="555" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Trésorerie Générale du Royaume]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="120" width="555" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Trésorerie Régionale de ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="140" width="555" height="20"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Marrakech]]></text>
+			</staticText>
+		</band>
+	</title>
+	<detail>
+		<band height="547" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="553" height="1"/>
+			</line>
+			<staticText>
+				<reportElement x="0" y="14" width="553" height="24"/>
+				<textElement textAlignment="Center">
+					<font size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ORDRE DE VIREMENT]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="209" y="38" width="100" height="20"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[N° ]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="16" y="68" width="526" height="356"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="59" y="83" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Compte n° :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="121" width="250" height="20"/>
+				<textElement/>
+				<text><![CDATA[Tenu à la Trésorerie Régionale de Marrakech]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="160" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Au nom de :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="191" y="160" width="322" height="20"/>
+				<textElement/>
+				<text><![CDATA[ Faculté des Sciences Semlalia  de Marrakech]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="16" y="202" width="526" height="20"/>
+				<textElement textAlignment="Center">
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Par le débit du compte sus indiqué, veuillez virer]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="238" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Au compte de :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="272" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Ouvert chez :  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="315" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[Sous numéro : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="360" width="100" height="20"/>
+				<textElement/>
+				<text><![CDATA[La somme de :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="393" width="337" height="20"/>
+				<textElement/>
+				<text><![CDATA[Objet du virement : Ordre de paiement n°]]></text>
+			</staticText>
+			<rectangle>
+				<reportElement x="16" y="446" width="526" height="88"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="16" y="446" width="143" height="20"/>
+				<textElement/>
+				<text><![CDATA[Le Sous – Ordonnateur                                              ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="309" y="466" width="154" height="20"/>
+				<textElement/>
+				<text><![CDATA[Le Fondé de Pouvoirs]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="191" y="83" width="322" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{compteDep}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="238" width="322" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{nom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="272" width="322" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{bnc}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="315" width="322" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{numCmpt}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="191" y="360" width="322" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$P{somme}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<textField pattern="EEEEE dd MMMMM yyyy">
+				<reportElement x="0" y="34" width="159" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="433" y="34" width="80" height="20"/>
+				<textElement textAlignment="Right"/>
+				<textFieldExpression><![CDATA["Page "+$V{PAGE_NUMBER}+" of"]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report">
+				<reportElement x="513" y="34" width="40" height="20"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

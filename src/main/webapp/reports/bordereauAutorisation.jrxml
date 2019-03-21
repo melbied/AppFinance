@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="bordereauAutorisation" columnDirection="RTL" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="92c1fbc5-9509-4b5e-b0a1-322296aef7b6">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="106"/>
+	<parameter name="annee" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[2016]]></defaultValueExpression>
+	</parameter>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA["E:\\MOUNIR\\MNR Document\\Projet Semlalia\\Projet FSSM\\FSSMProject\\src\\main\\webapp\\reports\\"]]></defaultValueExpression>
+	</parameter>
+	<field name="nomArabe" class="java.lang.String"/>
+	<variable name="nbr" class="java.lang.Integer" calculation="Count"/>
+	<title>
+		<band height="114" splitType="Stretch">
+			<textField>
+				<reportElement mode="Transparent" x="218" y="0" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d748d2f8-4c7c-40e2-b1d1-c9f6d2c8db3f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("مراكش في :")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="57" y="40" width="180" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="36c76f8a-acfd-407f-ad93-8ddcce4d7c32"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("الســيد العميد")]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement mode="Transparent" x="105" y="0" width="113" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="bd581b5e-2b81-46e7-ae81-01653afd7d40"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="419" y="0" width="136" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="6a4fbada-f34b-4152-b5e4-eb2cefa72f81"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("جامعة القاضي عياض")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="419" y="20" width="136" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="30a73c46-0091-4d55-b89c-dde7517be89f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("كلية العلوم السملالية")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="419" y="40" width="136" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="bc6889ca-801c-4e1b-86f6-e0a19c42fb69"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("مراكش")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="57" y="60" width="180" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="4e27d063-0f33-4e10-97a9-adb805e8ee2b"/>
+				<box rightPadding="0"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("إلــــــــــــى")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="57" y="80" width="180" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="5a780fac-fafe-499d-ad47-3f0d9cf91c71"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="14" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("السيد رئيس جامعة القاضي عياض")]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="66" splitType="Stretch">
+			<textField>
+				<reportElement x="208" y="31" width="147" height="35" uuid="c1a3c413-3fce-4f76-bdbf-6e487d399eb1"/>
+				<textElement textAlignment="Right" markup="none">
+					<font fontName="Arial" size="20" isBold="true" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("ورقــــة الإرســــــال")]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="154" splitType="Stretch">
+			<staticText>
+				<reportElement x="308" y="30" width="209" height="33" uuid="132618bb-3704-4cac-8b96-6bff4f311104"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<leftPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[الموضوع]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="208" y="30" width="100" height="33" forecolor="#000000" backcolor="#FFFFFF" uuid="173398f1-120c-40d1-9d0c-895b7307057b"/>
+				<box>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("عدد المرفقات")]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="46" y="30" width="162" height="33" forecolor="#000000" backcolor="#FFFFFF" uuid="bb7c17ee-af76-48d2-9d95-1be8a2555f4e"/>
+				<box>
+					<topPen lineWidth="2.0" lineStyle="Solid"/>
+					<leftPen lineWidth="2.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="2.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="18" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[الملاحظات]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="308" y="63" width="209" height="32" uuid="7f93eb0f-0aba-4356-8efe-878cc815904b"/>
+				<box>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" markup="none">
+					<font fontName="Arial" size="14"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("تجدون طيه :")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="46" y="63" width="162" height="91" uuid="a42e1ade-2182-464c-8e86-7c4e1ed6de1f"/>
+				<box rightPadding="15">
+					<leftPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("قصـــد الإسناد.")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="341" y="95" width="176" height="20" uuid="3d87103a-bd65-4ab5-8449-f32554e0ed93"/>
+				<box rightPadding="5">
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Bottom" markup="none">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("طلبات القيام بسـاعات عرضيـة او اضافية برسم  سنة")]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="308" y="115" width="209" height="39" uuid="4b2121c7-9093-4a13-b698-6bf005ea24e5"/>
+				<box rightPadding="5">
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Top" markup="none">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\u202B".concat("بكلية العلوم السملالية مراكش  تخص السادة الأساتذة ׃")]]></textFieldExpression>
+			</textField>
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="208" y="63" width="100" height="91" forecolor="#000000" backcolor="#FFFFFF" uuid="4d3e3657-3de9-46ea-b44f-e09a5c305426"/>
+				<box bottomPadding="15">
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Bottom" rotation="None" markup="none">
+					<font fontName="Arial" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="308" y="95" width="33" height="20" uuid="b327eb06-d2ee-4e29-88b9-db1d194ba39c"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom"/>
+				<textFieldExpression><![CDATA[$P{annee}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="39" splitType="Prevent">
+			<frame>
+				<reportElement x="46" y="0" width="471" height="39" uuid="9dd6b894-d8c1-4647-9846-89f16d2a3426"/>
+				<box>
+					<topPen lineWidth="2.0"/>
+					<leftPen lineWidth="2.0"/>
+					<bottomPen lineWidth="2.0"/>
+					<rightPen lineWidth="2.0"/>
+				</box>
+				<textField>
+					<reportElement x="238" y="9" width="189" height="20" uuid="b3ca957f-a729-433a-beb0-1ad53b965eaa"/>
+					<textElement textAlignment="Center">
+						<font fontName="Times New Roman" size="12" isBold="true"/>
+					</textElement>
+					<textFieldExpression><![CDATA["\u202B".concat($F{nomArabe})]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

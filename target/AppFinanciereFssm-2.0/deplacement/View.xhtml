@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeplacementViewDlg" widgetVar="DeplacementViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDeplacementTitle}">
+            <h:form id="DeplacementViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{deplacementController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_idDeplacement}"/>
+                        <h:outputText value="#{deplacementController.selected.idDeplacement}" title="#{bundle.ViewDeplacementTitle_idDeplacement}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_nbrJours}"/>
+                        <h:outputText value="#{deplacementController.selected.nbrJours}" title="#{bundle.ViewDeplacementTitle_nbrJours}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_dateDepart}"/>
+                        <h:outputText value="#{deplacementController.selected.dateDepart}" title="#{bundle.ViewDeplacementTitle_dateDepart}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_dateArrive}"/>
+                        <h:outputText value="#{deplacementController.selected.dateArrive}" title="#{bundle.ViewDeplacementTitle_dateArrive}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_annee}"/>
+                        <h:outputText value="#{deplacementController.selected.annee}" title="#{bundle.ViewDeplacementTitle_annee}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_motif}"/>
+                        <h:outputText value="#{deplacementController.selected.motif}" title="#{bundle.ViewDeplacementTitle_motif}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_dateCreation}"/>
+                        <h:outputText value="#{deplacementController.selected.dateCreation}" title="#{bundle.ViewDeplacementTitle_dateCreation}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_lastUptDt}"/>
+                        <h:outputText value="#{deplacementController.selected.lastUptDt}" title="#{bundle.ViewDeplacementTitle_lastUptDt}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_indice}"/>
+                        <h:outputText value="#{deplacementController.selected.indice}" title="#{bundle.ViewDeplacementTitle_indice}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_echelle}"/>
+                        <h:outputText value="#{deplacementController.selected.echelle}" title="#{bundle.ViewDeplacementTitle_echelle}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_grade}"/>
+                        <h:outputText value="#{deplacementController.selected.grade}" title="#{bundle.ViewDeplacementTitle_grade}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_etat}"/>
+                        <h:outputText value="#{deplacementController.selected.etat}" title="#{bundle.ViewDeplacementTitle_etat}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_observation}"/>
+                        <h:outputText value="#{deplacementController.selected.observation}" title="#{bundle.ViewDeplacementTitle_observation}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_dateEtat}"/>
+                        <h:outputText value="#{deplacementController.selected.dateEtat}" title="#{bundle.ViewDeplacementTitle_dateEtat}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_datePiece}"/>
+                        <h:outputText value="#{deplacementController.selected.datePiece}" title="#{bundle.ViewDeplacementTitle_datePiece}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_intutilePiece}"/>
+                        <h:outputText value="#{deplacementController.selected.intutilePiece}" title="#{bundle.ViewDeplacementTitle_intutilePiece}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_kmRoute}"/>
+                        <h:outputText value="#{deplacementController.selected.kmRoute}" title="#{bundle.ViewDeplacementTitle_kmRoute}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_kmPiste}"/>
+                        <h:outputText value="#{deplacementController.selected.kmPiste}" title="#{bundle.ViewDeplacementTitle_kmPiste}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_mntkm}"/>
+                        <h:outputText value="#{deplacementController.selected.mntkm}" title="#{bundle.ViewDeplacementTitle_mntkm}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_marque}"/>
+                        <h:outputText value="#{deplacementController.selected.marque}" title="#{bundle.ViewDeplacementTitle_marque}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_puissance}"/>
+                        <h:outputText value="#{deplacementController.selected.puissance}" title="#{bundle.ViewDeplacementTitle_puissance}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_montantDepExt}"/>
+                        <h:outputText value="#{deplacementController.selected.montantDepExt}" title="#{bundle.ViewDeplacementTitle_montantDepExt}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_montantDepInt}"/>
+                        <h:outputText value="#{deplacementController.selected.montantDepInt}" title="#{bundle.ViewDeplacementTitle_montantDepInt}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_typedep}"/>
+                        <h:outputText value="#{deplacementController.selected.typedep}" title="#{bundle.ViewDeplacementTitle_typedep}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_nomPays}"/>
+                        <h:outputText value="#{deplacementController.selected.nomPays}" title="#{bundle.ViewDeplacementTitle_nomPays}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_ville}"/>
+                        <h:outputText value="#{deplacementController.selected.ville}" title="#{bundle.ViewDeplacementTitle_ville}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_justification}"/>
+                        <h:outputText value="#{deplacementController.selected.justification}" title="#{bundle.ViewDeplacementTitle_justification}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_piece1}"/>
+                        <h:outputText value="#{deplacementController.selected.piece1}" title="#{bundle.ViewDeplacementTitle_piece1}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_piece2}"/>
+                        <h:outputText value="#{deplacementController.selected.piece2}" title="#{bundle.ViewDeplacementTitle_piece2}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_piece3}"/>
+                        <h:outputText value="#{deplacementController.selected.piece3}" title="#{bundle.ViewDeplacementTitle_piece3}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_idDotationSect}"/>
+                        <h:outputText value="#{deplacementController.selected.idDotationSect}" title="#{bundle.ViewDeplacementTitle_idDotationSect}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_cinPpr}"/>
+                        <h:outputText value="#{deplacementController.selected.cinPpr}" title="#{bundle.ViewDeplacementTitle_cinPpr}"/>
+                        <h:outputText value="#{bundle.ViewDeplacementLabel_idUser}"/>
+                        <h:outputText value="#{deplacementController.selected.idUser}" title="#{bundle.ViewDeplacementTitle_idUser}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DeplacementViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

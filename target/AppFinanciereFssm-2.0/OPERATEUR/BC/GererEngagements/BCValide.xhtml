@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition >
+
+        <h:form id="BCVALIDECreateForm">
+            <p:growl id="message" life="2000" showDetail="true" />
+                    <p:dialog  id="dialogue" header="Gestion des Expressions de Besoin validées" dynamic="true" widgetVar="BoncommandeViewDialog" showEffect="explode"  width="75%" modal="true">
+                        <h:panelGroup id="display">
+                            <p:panelGrid columns="5" rendered="#{boncommandeController.current != null}">
+                             
+                                <h:form id="LBCform" >
+                                    <p:growl id="msgs" life="2000" showDetail="true" />
+                                    <p:dataTable   id="ligneBCedit" var="item"  value="#{boncommandeController.LigneByIDBC(boncommandeController.idBC)}" editable="true" editMode="cell" widgetVar="cellLigneBC" >
+   
+                                    <p:ajax event="cellEdit" listener="#{lignecommandeController.onCellEdit}" process=":BCVALIDECreateForm:message" update=":BCVALIDECreateForm:message" />
+                                    
+
+
+                                    <p:column headerText="Article">
+                                        <h:outputText value="#{articleController.getArticle(item.idArticle).description}" style="font-size: 20px"/>
+                                </p:column>
+                                
+                                <p:column headerText="Quantité">
+                                    <h:outputText value="#{item.quantite}" style="font-size: 20px"/>
+                                </p:column>
+                                <p:column headerText="PU estimatif /MAD">
+                                    <h:outputText value="#{articleController.getArticle(item.idArticle).pu}" style="font-size: 20px"/>
+                                </p:column>
+                                    <p:column headerText="PU negocié /MAD"   >
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                      <span class="ui-button-icon-left ui-icon ui-c ui-icon-pencil" style="float: right"></span>
+                                        <h:outputText value="#{item.pu} " style="color: #75a353;background-color: lightcyan;font-size: 25px;font-weight: bold; float: left; " />  </f:facet> 
+                                         <f:facet name="input"><p:inputText binding="#{input1}" widgetVar="PUinput" id="modelInput" value="#{item.pu}"  valueChangeListener="#{lignecommandeController.onValueQuantityChange}" style="width:96%">
+                                                 <f:attribute name="idligne" value="#{item.idLigne}" />
+                                                 <f:attribute name="idBC" value="#{item.idLigne}" />
+                                                 <f:ajax event="valueChange" render="HT"  />
+                                             </p:inputText>
+                                         
+                                         </f:facet>
+
+                                         
+                                </p:cellEditor>
+                                </p:column>
+                                     <p:column headerText="Total HT /MAD">
+                                         <h:outputText value="#{item.montant}"  id="HT" style="color: #363636;font-weight: bold ;font-size: 25px; background-color: lightcyan;" />
+                                </p:column>
+                                      </p:dataTable>
+ 
+                                </h:form>
+                                
+                            </p:panelGrid>
+                            
+                        </h:panelGroup>
+                    </p:dialog>
+                    
+                    <div class="col-md-12 col-sm-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Liste Des Expressions de Besoin Validées
+                            </div>
+                            <div class="panel-body">
+                              
+                                <div class="table-responsive">
+                                    <div class="table-responsive">
+                                        <p:dataTable id="datalist" value="#{boncommandeController.allItemesVALIDE}" var="item" style="border:solid 1px"
+                                                     selectionMode="single" selection="#{boncommandeController.current}"
+                                                     paginator="true"
+                                                     rowKey="#{item.idBC}"
+                                                     >
+                                            <p:ajax event="rowSelect" listener="#{boncommandeController.remplireFormulaireGBC()}"  update="@form" process="@this"/>
+                                            
+                                            <p:column headerText="N° BON Commande">
+                                                <h:outputText value="#{item.idBC}"/>
+                                            </p:column>
+                                            <p:column headerText="Fournisseur">
+                                                <h:outputText value="#{fournisseurController.getFournisseur(item.idFournisseur).nom}"/>
+                                            </p:column>
+                                            <p:column headerText="Demandeur">
+                                                <h:outputText value="#{item.nomComplet}"/>
+                                            </p:column>
+
+                                            <p:column headerText="#{bundle.ListBoncommandeTitle_dateCommande}">
+                                                <h:outputText value="#{item.dateCommande}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </p:column>
+
+                                            <p:column headerText="#{bundle.ListBoncommandeTitle_etat}">
+                                                <h:outputText value="#{item.etat}"/>
+                                            </p:column>
+
+                                            <p:column headerText="#{bundle.ListBoncommandeTitle_type}">
+                                                <h:outputText value="#{item.type}"/>
+                                            </p:column>
+                                            <p:column headerText="Montant totale" style="background-color: #CCC ; color :#005f8d ; font-weight: bold">
+                                                   <h:outputText value="#{item.montant}" id="montantTtl"/>
+                                            </p:column>
+                                            
+                                            <p:column headerText="Action">
+                                                <p:commandButton id="ajaxdelete"  action="#{boncommandeController.performDestroyBCG()}" icon="ui-icon-trash" class="btn btn-danger btn-lg" update="@form">
+                                                    <p:confirm header="Confirmation de suppression" message="voulez-vous vraiment supprimer ces informations?" icon="ui-icon-alert" />
+                                                </p:commandButton>
+                                                <p:commandButton icon="ui-icon-search"  action="#{boncommandeController.remplireFormulaireGBC()}" type="button" onclick="PF('BoncommandeViewDialog').show();"  title="Valider les Articles" class="btn btn-success btn-lg" >
+                                                </p:commandButton>
+                                            </p:column>
+                                        </p:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form> 
+
+    </ui:composition>
+</html>

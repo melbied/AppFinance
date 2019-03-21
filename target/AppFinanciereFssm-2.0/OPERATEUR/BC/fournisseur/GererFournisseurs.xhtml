@@ -1,0 +1,159 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body onload="#{fournisseurController.getItemes()}">
+
+        <ui:composition template="../../templateTest.xhtml">
+        <ui:define name="content">
+              
+       
+              <h:form id="FournisseurCreateForm">
+              <p:growl id="msgs"  life="2000" />
+           
+            <div class="col-md-12 col-sm-12">
+                
+                <div class="panel panel-primary" >
+                    <div class="panel-heading" style="background-color: #81d39a;">
+                        Formulaire Founisseur:
+                    </div>
+                    <div style="padding: 10px;">
+                        <center>
+                            <table  style="width:500px;height:250px; margin:0px;padding:0px; border-width: 5px; text-align: center;align-content: center;">
+                                <tr> 
+                                    <td>
+                                        <p:outputLabel value="#{bundle.CreateFournisseurTitle_idFournisseur}" for="Nom" />
+                                    </td>
+                                    <td >
+                                        <p:autoComplete dropdown="true" id="Nom" value="#{fournisseurController.current.nom}" forceSelection="true" 
+                                                        completeMethod="#{fournisseurController.completeText}" title="#{bundle.CreateFournisseurTitle_idFournisseur}" 
+                                                        required="false" requiredMessage="#{bundle.CreateFournisseurRequiredMessage_idFournisseur}"  >
+                                            
+                                            <p:ajax event="itemSelect" listener="#{fournisseurController.subjectSelectionChanged()}" update="@form" process="@this" />
+                                            <p:ajax event="change" listener="#{fournisseurController.subjectSelectionChanged()}" update="@form" process="@this" />
+                                            
+                                        </p:autoComplete>
+                                    </td>
+                                </tr>
+                                <tr><td><br/></td><td><br/></td></tr>
+                                <tr> 
+                                    <td ><p:outputLabel value="Nouveau Nom:" for="newNom" /></td>
+                                    <td><p:inputText id="newNom" value="#{fournisseurController.newName}" title="#{bundle.CreateFournisseurTitle_nom}"/></td>
+                                </tr>
+                                <tr><td><br/></td><td><br/></td></tr>
+                                <tr> 
+                                    <td ><p:outputLabel value="#{bundle.CreateFournisseurLabel_adresse}" for="adresse" /></td>
+                                    <td><p:inputText id="adresse" value="#{fournisseurController.current.adresse}" title="#{bundle.CreateFournisseurTitle_adresse}"/></td>
+                                </tr>
+                                <tr><td><br/></td><td><br/></td></tr>
+                                <tr> 
+                                    <td class="olab" ><p:outputLabel value="#{bundle.CreateFournisseurLabel_email}" for="email" /></td>
+                                    <td class="olab">
+                                        <p:inputText id="email" required="true" label="email" size="40"
+                                                     requiredMessage="Saisissez votre e-mail S'il vous plait !"
+                                                     validatorMessage="Invalid email format"
+                                                     value="#{fournisseurController.current.email}" title="#{bundle.CreateFournisseurTitle_email}">
+                                            <f:validateRegex pattern="^[_A-Za-z0-9-\+]+(\.[_A-Za-z0-9-]+)*@[A-Za-z0-9-]+(\.[A-Za-z0-9]+)*(\.[A-Za-z]{2,})$" />
+                                        </p:inputText>
+                                        <p:watermark for="email" value="Email  *" />
+                                        <p:message for="email" />
+                                    </td>
+                                </tr>
+                                <tr><td><br/></td><td><br/></td></tr>
+                                <tr> 
+                                    <td class="olab"><p:outputLabel value="#{bundle.CreateFournisseurLabel_tel}" for="tel" /></td>
+                                    <td class="olab"><p:inputText id="tel" value="#{fournisseurController.current.tel}" title="#{bundle.CreateFournisseurTitle_tel}"/></td>
+                                </tr>
+                                <tr><td><br/></td><td><br/></td></tr>
+                                <tr> 
+                                    <td class="olab"><p:outputLabel value="RIB:" for="rib" /></td>
+                                    <td class="olab"><p:inputText id="rib" value="#{fournisseurController.current.rib}" title="rib"/></td>
+                                </tr>
+                                <tr><td><br/></td><td><br/></td></tr>
+                                <tr> 
+                                    <td class="olab"><p:outputLabel value="banque:" for="banque" /></td>
+                                    <td class="olab"><p:inputText id="banque" value="#{fournisseurController.current.banque}" title="banque"/></td>
+                                </tr>
+                                <tr><td><br/></td><td><br/></td></tr>
+                                <tr>
+                                    <td class="olab">
+                                        <p:commandButton  ajax="false" id="ajaxcreate"  action="#{fournisseurController.create}" value="Ajouter" icon="ui-icon-plus" disabled="#{fournisseurController.disablCreate}" class="btn btn-primary btn-lg" update="@form">
+                                        </p:commandButton>
+                                    </td>
+                                    <td class="olab">
+                                        <p:commandButton  id="ajaxupdate"   action="#{fournisseurController.update}" value="Modifier" icon="ui-icon-pencil" disabled="#{fournisseurController.disablUpdate}" class="btn btn-success btn-lg" update="@form">
+                                            
+                                        </p:commandButton>
+                                    </td>
+                                    <td class="olab">
+                                        <p:commandButton id="ajaxdelete"  action="#{fournisseurController.performDestroy}" value="Supprimer" icon="ui-icon-trash" disabled="#{fournisseurController.disablDelete}" class="btn btn-danger btn-lg" update="@form">
+                                            <p:confirm header="Confirmation de suppression" message="voulez-vous vraiment supprimer ces informations?" icon="ui-icon-alert" />
+                                        </p:commandButton>
+                                    </td>
+                                    
+
+
+                                </tr>
+                                <tr><td><br/></td><td><br/></td></tr>
+                            </table>
+                        </center>
+                    </div>
+                </div>
+            </div>
+
+               </h:form>    
+                 
+                        <div class="table-responsive">
+                           <h:form id="FournisseurListForm">
+                                <p:growl id="msgs" showDetail="true" life="3000"/>
+                            <p:dataTable id="basicDT" value="#{fournisseurController.items}" filteredValue="#{fournisseurController.filteredItems}" var="item" 
+                                         selection="#{fournisseurController.selected}"
+                                         paginator="true"
+                                        rowKey="#{item.idFournisseur}"
+                                        rows="5"
+                                        rowsPerPageTemplate="5,10,15,20,25"
+                                        widgetVar="fournisseurTable"
+                                        emptyMessage="Aucun fournisseur trouvé">
+                                
+                                
+                                 <f:facet name="header">
+                                    <p:outputPanel>
+                                        <h:outputText value="Chercher :  " />
+                                        <p:inputText id="globalFilter" onkeyup="PF('fournisseurTable').filter()" style="width:150px" placeholder="Entrer Mot clé"/>
+                                    </p:outputPanel>
+                                </f:facet>
+                                 <p:column headerText="#{bundle.ListFournisseurTitle_nom}" filterBy="#{item.nom}"   filterMatchMode="contains">
+                                    <h:outputText value="#{item.nom}"/>
+                                </p:column>
+                                
+                              
+                                <p:column headerText="#{bundle.ListFournisseurTitle_tel}">
+                                    <h:outputText value="#{item.tel}"/>
+                                </p:column>
+                                <p:column headerText="#{bundle.ListFournisseurTitle_email}">
+                                    <h:outputText value="#{item.email}"/>
+                                </p:column>
+                                <p:column headerText="RIB">
+                                    <h:outputText value="#{item.rib}"/>
+                                </p:column>
+                                 <p:column style="width:50px;text-align: center">
+                                        <p:commandButton id="viewButton" icon="ui-icon-search"  update=":FournisseurViewForm" oncomplete="PF('FournisseurViewDialog').show()" >
+                                            <f:setPropertyActionListener value="#{item}" target="#{fournisseurController.selected}" />
+                                       </p:commandButton>
+                                   </p:column>
+                            </p:dataTable>
+                              </h:form>   
+                        </div>
+ 
+        
+               <ui:include src="View.xhtml"/>
+            </ui:define>
+
+        </ui:composition>
+        
+    </h:body>
+</html>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DossiervacataireEditDlg" widgetVar="DossiervacataireEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDossiervacataireTitle}">
+            <h:form id="DossiervacataireEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{dossiervacataireController.selected != null}">
+
+                       
+                        <p:outputLabel value="#{bundle.EditDossiervacataireLabel_statutDossier}" for="statutDossier" />
+                        <h:selectOneMenu id="statutDossier" value="#{dossiervacataireController.selected.statutDossier}" styleClass="form-control">
+                            <f:selectItem itemValue="V"  />
+
+                                        </h:selectOneMenu>
+                      
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{dossiervacataireController.update}" value="#{bundle.Save}" update="display,:DossiervacataireListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DossiervacataireEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DossiervacataireEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

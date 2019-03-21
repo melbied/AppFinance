@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition template="../templateTest.xhtml">
+<ui:define name="titlepanelLeft">
+               Expression de besoin
+            </ui:define>
+
+         
+
+            <ui:define name="titlepanel">
+                Exprimer des Besoins
+            </ui:define>
+
+        <ui:define name="titre_content"> Demande d'expression de besoin </ui:define>
+        <ui:define name="content">
+              <h:form  id="LancerDemandeForm">
+             <div class="col-md-12 col-sm-12">
+                <div class="panel panel-primary">
+                    <div class="panel-heading" style="background-color: #81d39a;">
+                        Nouvelle demande:
+                    </div>
+                    <div class="panel-body" >
+          
+                <center>
+                     <p:growl id="msgs" showDetail="true" />
+                     <h:panelGrid columns="2" width="45%" cellpadding="15" >
+                        <h:outputLabel value="Date de la demande" for="dateCommande" />
+                        <p:outputLabel id="dateCommande" value="#{boncommandeController.datecm}"  />        
+                        
+                        <h:outputLabel value="Nom demandeur" for="nom" />
+                        <p:inputText class="form-control"  id="nom" value="#{boncommandeController.current.nomComplet}" />
+                        
+                        <h:outputLabel value="Secteur Principal" for="idSP" />
+                        <p:autoComplete  style="overflow: hidden; width: 100% !important;" class="form-control-static"
+                                         dropdown="true" id="idSP" value="#{boncommandeController.secteurP}"  completeMethod="#{secteurprincipalController.completeText}" title="#{bundle.CreateSecteurprincipalTitle_designation}" forceSelection="true" required="true">
+                                           
+                         </p:autoComplete>
+                        
+                        
+                       
+                       <h:outputLabel value="Secteur Initial" for="intituleSecteur" />
+                          
+                       <p:autoComplete  dropdown="true" style="overflow: hidden; width: 100% !important;" class="form-control-static" id="intituleSecteur" value="#{boncommandeController.secteur}"  completeMethod="#{secteurController.completeText}" title="#{bundle.CreateSecteurprincipalTitle_designation}" required="true" forceSelection="true">
+                                          
+                        </p:autoComplete>
+                       
+                        <h:outputLabel value="Etat" for="etat" />
+                        <p:inputText class="form-control" readonly="true" id="etat" value="En cours" title="#{bundle.CreateBoncommandeTitle_etat}" />
+                        
+                        <h:outputLabel value="Type" for="type" />
+                        <h:selectOneMenu  class="form-control" id="type" value="#{boncommandeController.type}"  title="#{bundle.CreateBoncommandeTitle_type}"  style="width:200px" >
+                                            <f:selectItem itemLabel="Bon de Commande" itemValue="BC" />
+                                            <f:selectItem itemLabel="Lettre de Commande" itemValue="LC" />
+                        </h:selectOneMenu>
+                        
+                        <h:outputLabel value="Compte budgetaire" for="idCompte" />
+                                        <p:autoComplete dropdown="true" style="overflow: hidden; width: 100% !important;" class="form-control-static" id="idCompte" value="#{boncommandeController.cpt}"  completeMethod="#{compteController.completeText}" title="#{bundle.CreateBudgetTitle_budgetPK_idCompte}" required="true"  
+                                                         var="cmp" itemLabel="#{cmp.idCompte}" itemValue="#{cmp}" forceSelection="true">
+                                            <p:column style="width:10%">
+                                                <h:outputText value="#{cmp.idCompte}" />
+                                            </p:column>
+
+                                            <p:column>
+                                                <h:outputText value="#{cmp.intitule}" /> 
+                                            </p:column>
+                                            
+                                        </p:autoComplete>
+                        
+                        
+                    </h:panelGrid>
+ 
+   
+                                        <p:commandButton  style="background-color: #81d39a; width: 25%; height: 50px;" ajax="false" id="ajaxcreate"  action="#{boncommandeController.create}" value="Ajouter" icon="ui-icon-plus" class="btn btn-primary btn-lg" update="@form">
+                                        </p:commandButton>
+                    
+                     
+                                     
+                     
+                    
+              
+                </center>
+                        
+                    </div></div></div>
+                    
+            </h:form>       
+        </ui:define>
+    </ui:composition>
+
+</html>

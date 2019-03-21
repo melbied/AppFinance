@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DeplacementCreateDlg" widgetVar="DeplacementCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateDeplacementTitle}">
+            <h:form id="DeplacementCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{deplacementController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_idDeplacement}" for="idDeplacement" />
+                        <p:inputText id="idDeplacement" value="#{deplacementController.selected.idDeplacement}" title="#{bundle.CreateDeplacementTitle_idDeplacement}" required="true" requiredMessage="#{bundle.CreateDeplacementRequiredMessage_idDeplacement}"/>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_nbrJours}" for="nbrJours" />
+                        <p:inputText id="nbrJours" value="#{deplacementController.selected.nbrJours}" title="#{bundle.CreateDeplacementTitle_nbrJours}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_dateDepart}" for="dateDepart" />
+                        <p:calendar id="dateDepart" pattern="MM/dd/yyyy HH:mm:ss" value="#{deplacementController.selected.dateDepart}" title="#{bundle.EditDeplacementTitle_dateDepart}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_dateArrive}" for="dateArrive" />
+                        <p:calendar id="dateArrive" pattern="MM/dd/yyyy HH:mm:ss" value="#{deplacementController.selected.dateArrive}" title="#{bundle.EditDeplacementTitle_dateArrive}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_annee}" for="annee" />
+                        <p:inputText id="annee" value="#{deplacementController.selected.annee}" title="#{bundle.CreateDeplacementTitle_annee}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_motif}" for="motif" />
+                        <p:inputText id="motif" value="#{deplacementController.selected.motif}" title="#{bundle.CreateDeplacementTitle_motif}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_dateCreation}" for="dateCreation" />
+                        <p:calendar id="dateCreation" pattern="MM/dd/yyyy HH:mm:ss" value="#{deplacementController.selected.dateCreation}" title="#{bundle.EditDeplacementTitle_dateCreation}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_lastUptDt}" for="lastUptDt" />
+                        <p:calendar id="lastUptDt" pattern="MM/dd/yyyy HH:mm:ss" value="#{deplacementController.selected.lastUptDt}" title="#{bundle.EditDeplacementTitle_lastUptDt}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_indice}" for="indice" />
+                        <p:inputText id="indice" value="#{deplacementController.selected.indice}" title="#{bundle.CreateDeplacementTitle_indice}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_echelle}" for="echelle" />
+                        <p:inputText id="echelle" value="#{deplacementController.selected.echelle}" title="#{bundle.CreateDeplacementTitle_echelle}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_grade}" for="grade" />
+                        <p:inputText id="grade" value="#{deplacementController.selected.grade}" title="#{bundle.CreateDeplacementTitle_grade}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_etat}" for="etat" />
+                        <p:inputText id="etat" value="#{deplacementController.selected.etat}" title="#{bundle.CreateDeplacementTitle_etat}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_observation}" for="observation" />
+                        <p:inputText id="observation" value="#{deplacementController.selected.observation}" title="#{bundle.CreateDeplacementTitle_observation}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_dateEtat}" for="dateEtat" />
+                        <p:calendar id="dateEtat" pattern="MM/dd/yyyy" value="#{deplacementController.selected.dateEtat}" title="#{bundle.EditDeplacementTitle_dateEtat}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_datePiece}" for="datePiece" />
+                        <p:calendar id="datePiece" pattern="MM/dd/yyyy" value="#{deplacementController.selected.datePiece}" title="#{bundle.EditDeplacementTitle_datePiece}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_intutilePiece}" for="intutilePiece" />
+                        <p:inputText id="intutilePiece" value="#{deplacementController.selected.intutilePiece}" title="#{bundle.CreateDeplacementTitle_intutilePiece}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_kmRoute}" for="kmRoute" />
+                        <p:inputText id="kmRoute" value="#{deplacementController.selected.kmRoute}" title="#{bundle.CreateDeplacementTitle_kmRoute}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_kmPiste}" for="kmPiste" />
+                        <p:inputText id="kmPiste" value="#{deplacementController.selected.kmPiste}" title="#{bundle.CreateDeplacementTitle_kmPiste}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_mntkm}" for="mntkm" />
+                        <p:inputText id="mntkm" value="#{deplacementController.selected.mntkm}" title="#{bundle.CreateDeplacementTitle_mntkm}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_marque}" for="marque" />
+                        <p:inputText id="marque" value="#{deplacementController.selected.marque}" title="#{bundle.CreateDeplacementTitle_marque}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_puissance}" for="puissance" />
+                        <p:inputText id="puissance" value="#{deplacementController.selected.puissance}" title="#{bundle.CreateDeplacementTitle_puissance}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_montantDepExt}" for="montantDepExt" />
+                        <p:inputText id="montantDepExt" value="#{deplacementController.selected.montantDepExt}" title="#{bundle.CreateDeplacementTitle_montantDepExt}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_montantDepInt}" for="montantDepInt" />
+                        <p:inputText id="montantDepInt" value="#{deplacementController.selected.montantDepInt}" title="#{bundle.CreateDeplacementTitle_montantDepInt}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_typedep}" for="typedep" />
+                        <p:inputText id="typedep" value="#{deplacementController.selected.typedep}" title="#{bundle.CreateDeplacementTitle_typedep}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_nomPays}" for="nomPays" />
+                        <p:inputText id="nomPays" value="#{deplacementController.selected.nomPays}" title="#{bundle.CreateDeplacementTitle_nomPays}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_ville}" for="ville" />
+                        <p:inputText id="ville" value="#{deplacementController.selected.ville}" title="#{bundle.CreateDeplacementTitle_ville}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_justification}" for="justification" />
+                        <p:inputText id="justification" value="#{deplacementController.selected.justification}" title="#{bundle.CreateDeplacementTitle_justification}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_piece1}" for="piece1" />
+                        <p:inputText id="piece1" value="#{deplacementController.selected.piece1}" title="#{bundle.CreateDeplacementTitle_piece1}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_piece2}" for="piece2" />
+                        <p:inputText id="piece2" value="#{deplacementController.selected.piece2}" title="#{bundle.CreateDeplacementTitle_piece2}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_piece3}" for="piece3" />
+                        <p:inputText id="piece3" value="#{deplacementController.selected.piece3}" title="#{bundle.CreateDeplacementTitle_piece3}" />
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_idDotationSect}" for="idDotationSect" />
+                        <p:selectOneMenu id="idDotationSect" value="#{deplacementController.selected.idDotationSect}" >
+                            <f:selectItems value="#{dotationsecteurController.itemsAvailableSelectOne}"
+                                           var="idDotationSectItem"
+                                           itemValue="#{idDotationSectItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_cinPpr}" for="cinPpr" />
+                        <p:selectOneMenu id="cinPpr" value="#{deplacementController.selected.cinPpr}" >
+                            <f:selectItems value="#{intervenantController.itemsAvailableSelectOne}"
+                                           var="cinPprItem"
+                                           itemValue="#{cinPprItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateDeplacementLabel_idUser}" for="idUser" />
+                        <p:selectOneMenu id="idUser" value="#{deplacementController.selected.idUser}" >
+                            <f:selectItems value="#{usersController.itemsAvailableSelectOne}"
+                                           var="idUserItem"
+                                           itemValue="#{idUserItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{deplacementController.create}" value="#{bundle.Save}" update="display,:DeplacementListForm:datalist,:growl" oncomplete="handleSubmit(args,'DeplacementCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DeplacementCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

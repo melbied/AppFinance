@@ -1,0 +1,128 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+
+    <body>
+
+        <ui:composition template="./../templateTest.xhtml">
+
+            <ui:define name="title">
+                title
+            </ui:define>
+
+            <ui:define name="titlepanelLeft">
+                titlepanelLeft
+            </ui:define>
+
+            <ui:define name="titlepanelRight">
+                titlepanelRight
+            </ui:define>
+
+            <ui:define name="titlepanel">
+                titlepanel
+            </ui:define>
+
+            <ui:define name="content">
+                <h:form >
+                <div class="x_content">
+                    <p class="text-muted font-13 m-b-30">
+                        Responsive is an extension for DataTables
+                    </p>
+                    <div id="datatable-responsive_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+                        <div class="row">
+                            
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <table id="datatable-responsive" class="table table-striped table-bordered dt-responsive nowrap dataTable no-footer dtr-inline" cellspacing="0" width="100%" role="grid" aria-describedby="datatable-responsive_info" style="width: 100%;">
+                                    <thead>
+                                        <tr role="row">
+                                            <th class="sorting_asc" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" style="width: 72px;" aria-sort="ascending" aria-label="First name: activate to sort column descending">
+                                                CIN PPR
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" style="width: 71px;" aria-label="Last name: activate to sort column ascending">
+                                                Nom complet
+                                            </th>
+
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" style="width: 66px;" aria-label="Office: activate to sort column ascending">
+                                                Grade
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" style="width: 28px;" aria-label="Age: activate to sort column ascending">
+                                                nombre heures
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" style="width: 67px;" aria-label="Start date: activate to sort column ascending">
+                                                semestre
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" style="width: 46px;" aria-label="Salary: activate to sort column ascending">
+                                                NET
+                                            </th>
+
+
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" style="width: 147px;" aria-label="E-mail: activate to sort column ascending">
+                                                
+                                            </th>
+                                            <th class="sorting" tabindex="0" aria-controls="datatable-responsive" rowspan="1" colspan="1" style="width: 147px;" aria-label="E-mail: activate to sort column ascending">
+                                                Impressions
+                                            </th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <ui:repeat value="#{dossiervacataireController.itemsAvailableSelectOne}" var="items">
+                                            <tr role="row" class="odd">
+                                                <td tabindex="0" class="sorting_1">#{items.cinPpr.cinPpr}</td>
+                                                <td>#{items.cinPpr.nomComplet}</td>
+              
+                                                <td>#{items.idGrade.intituleGrade}</td>
+                                                <td>#{items.nbrHeures}</td>
+                                                <td>#{items.semestre}</td>
+                                                <td>#{items.net}</td>
+           
+                                                <td>
+                                                    
+                                                        <h:commandButton action="#{dossiervacataireController.prepareUpdate(items)}" styleClass="btn btn-primary" value="Modifier" />
+                                                   
+                                                </td>
+                                                <td>
+                                                    
+                                                    <p:commandButton value="OP" onclick="PF('op').show();"  rendered="#{items.statutDossier eq 'V'}"/> 
+                                                        <p:dialog resizable="false" header="Imprimer Order de Paiement" widgetVar="op" showEffect="explode"   width="400" height="100">
+                                                           
+                                                                <p:commandButton value="OP PDF" action="#{dossiervacataireController.imprimerOP(items, 1)}" ajax="false" onclick="this.form.target='_blank'" />
+                                                                <p:commandButton value="OP DOC" action="#{dossiervacataireController.imprimerOP(items, 2)}" ajax="false" onclick="this.form.target='_blank'" /> 
+                                                                <p:commandButton value="OP EXCEL" action="#{dossiervacataireController.imprimerOP(items, 3)}" ajax="false" onclick="this.form.target='_blank'" />
+                                                           
+                                                        </p:dialog>
+                                                    
+                                                        <p:commandButton value="OV" onclick="PF('ov').show();" rendered="#{items.statutDossier eq 'V'}"/>
+                                                        <p:dialog resizable="false" header="Imprimer Order de vairement" widgetVar="ov" showEffect="explode"  width="400" height="100">
+                                                           
+                                                                <p:commandButton value="OV PDF" action="#{dossiervacataireController.imprimerOV(items, 1)}" ajax="false" onclick="this.form.target='_blank'" />
+                                                                <p:commandButton value="OV DOC" action="#{dossiervacataireController.imprimerOV(items, 2)}" ajax="false" onclick="this.form.target='_blank'" />
+                                                                <p:commandButton value="OV EXCEL" action="#{dossiervacataireController.imprimerOV(items, 3)}" ajax="false" onclick="this.form.target='_blank'" />
+                                                           
+                                                        </p:dialog>
+                                                        
+                                                    <h:outputLabel rendered="#{items.statutDossier eq 'N'}" styleClass="label label-warning" value="En cours..." style="margin-right: 14px;"/>
+                                                </td>
+                                            </tr>
+                                        </ui:repeat>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                        <div class="row">
+                            
+                        </div>
+                    </div>
+
+                </div>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

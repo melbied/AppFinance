@@ -1,0 +1,739 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="memoire" pageWidth="595" pageHeight="842" whenNoDataType="AllSectionsNoDetail" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="68bf49d6-a872-4fc3-a420-89b8ed4765fa">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="nomComplet" class="java.lang.String"/>
+	<parameter name="cin_ppr" class="java.lang.String"/>
+	<parameter name="mois" class="java.lang.String"/>
+	<parameter name="grade" class="java.lang.String"/>
+	<parameter name="echelle" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="echelon" class="java.lang.String">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nbr_enfant" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="nbr_heure" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="taux" class="java.lang.Integer">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="salaire_annuel_brut" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="allocation_familial" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="brut_additionner" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="amo" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="retenue_cmr" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mutulelle_mutualiste" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="mutuelle_caisse" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="rachat_cmr" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="somme_deduire" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="charge_familiale" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ir_source" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="ir_complement" class="java.lang.Double">
+		<parameterDescription><![CDATA[]]></parameterDescription>
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<parameter name="_frais_pro" class="java.lang.Double">
+		<defaultValueExpression><![CDATA[0.0]]></defaultValueExpression>
+	</parameter>
+	<variable name="test" class="java.lang.String" calculation="Sum"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="43" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="164" height="43" uuid="a0dab9f0-6289-46a8-a4b7-ba2522bafd31"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[ UNIVERSITE CADI AYYAD
+FACULTE DES SCIENCES
+SEMLALIA-MARRAKECH
+]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="705" splitType="Stretch">
+			<staticText>
+				<reportElement x="132" y="4" width="277" height="20" uuid="6d89295d-b4da-42d1-a27c-96851f4a01ab"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Mémoire des heures supplémentaires]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="338" y="35" width="51" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="e51d5ff0-3ef5-4719-9fe0-14fadac3ecd6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[N° PPR ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="52" width="132" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="cc9b48e0-e7f7-4635-8ecc-7e4230cd3e31"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Pendant le mois : 	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="19" y="35" width="132" height="20" uuid="a272ba45-d64f-45b3-9821-98425482566e"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12"/>
+				</textElement>
+				<text><![CDATA[Effectuée par Monsieur :  	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="70" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="297e842f-68c1-4d08-a383-4c423ddaf4ed"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Grade : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="88" width="46" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="fa91a274-f167-4604-b943-a7858dbd91ac"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Echelle : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="118" y="88" width="56" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="74a8d6ce-6ea0-4a74-a688-71603a32ff7b"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[  Echelon :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="152" y="136" width="257" height="20" uuid="9604f53c-3c22-419d-8610-f0b80eeebec4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[A - Nombre d'heures supplementaires éffectuées (1)				]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="174" y="156" width="119" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3c5ebbb7-4867-4ae1-b4ad-5cd52da41ef9"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Heures      x	Taux]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement x="407" y="156" width="93" height="20" uuid="1f53e60c-cbdd-4ccc-a892-12a94a84085f"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nbr_heure} * $P{taux}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="59" y="177" width="305" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="5e33e700-9f63-49bf-a4af-a552665647c2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Calcul de revenu imposable du personnel Permanent(2)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="196" width="254" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0af87e7c-9fc0-4bcd-aa73-ee5abc7c3717"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[* Salaire Annuel Brut]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="213" width="255" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="d1ae3a37-0848-4992-a9c6-0794f1d8bc5f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[* allocations familiales à deduire		]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="230" width="274" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="77e8f944-986b-4d1b-af19-6562a89b46f2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[*compléments de salaire déjà perçus (Brut) à additionner				]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="247" width="255" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="50c31fa7-6ea9-42cf-91a3-18c2b56945e5"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[* Montant des heures supplémentaires à additionner :			]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="247" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="edf71d92-75a6-4f18-8da4-1e8a0deb6c56"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nbr_heure} * $P{taux}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="152" y="265" width="175" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="dc4bf6dd-648d-4168-9c46-5370ba1ddd82"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[B- Revenu Brut imposable : ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="265" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f861b76a-52bc-41ae-98ed-a8db5ef95e68"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Math.abs($P{salaire_annuel_brut} - $P{allocation_familial} + $P{brut_additionner} + Double.parseDouble(($P{nbr_heure} * $P{taux}) + ""))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="298" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="26e7ad5e-2752-473e-b243-248ef1f34a64"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[a) Frais professionnels 20%.(plafond30000dh/an)................................]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="327" y="298" width="79" height="16" forecolor="#000000" backcolor="#FFFFFF" uuid="23281563-a632-4348-b4fa-6f07e0cc0ad4"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[0.02 * Math.abs($P{salaire_annuel_brut} - $P{allocation_familial} + $P{brut_additionner} + $P{nbr_heure} * $P{taux})]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="426" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="2aa0046c-6157-45e9-a45c-12c6ee50e432"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Math.abs(($P{salaire_annuel_brut} - $P{allocation_familial} + $P{brut_additionner} + ($P{nbr_heure} * $P{taux})) - ($P{amo} + $P{retenue_cmr} + $P{mutulelle_mutualiste} + $P{mutuelle_caisse} + $P{rachat_cmr}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="446" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="9e9131c9-af81-4682-9ebf-31f2893346d9"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[0.17 * Math.abs(($P{salaire_annuel_brut} - $P{allocation_familial} + $P{brut_additionner} + ($P{nbr_heure} * $P{taux})) - ($P{amo} + $P{retenue_cmr} + $P{mutulelle_mutualiste} + $P{mutuelle_caisse} + $P{rachat_cmr}))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="479" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b6e01f3b-7e84-4d7b-b639-00701f2a0b40"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{charge_familiale} * $P{nbr_enfant}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="498" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="520ce1ce-2a48-46b3-b7dc-18ad90577ae8"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Math.abs(($P{charge_familiale} * $P{nbr_enfant}) - ($P{somme_deduire}) - (0.17 * Math.abs(($P{salaire_annuel_brut} - $P{allocation_familial} + $P{brut_additionner} + ($P{nbr_heure} * $P{taux})) - ($P{amo} + $P{retenue_cmr} + $P{mutulelle_mutualiste} + $P{mutuelle_caisse} + $P{rachat_cmr}))))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="547" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="60d76965-2e23-4363-a8a9-e114e43a039f"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Math.abs( (Math.abs(($P{charge_familiale} * $P{nbr_enfant}) - ($P{somme_deduire}) - (0.17 * Math.abs(($P{salaire_annuel_brut} - $P{allocation_familial} + $P{brut_additionner} + ($P{nbr_heure} * $P{taux})) - ($P{amo} + $P{retenue_cmr} + $P{mutulelle_mutualiste} + $P{mutuelle_caisse} + $P{rachat_cmr}))))) - $P{ir_source} - $P{ir_complement} )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="314" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="75aea0b9-c39f-446e-8d51-ef004cf4b197"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[b) AMO]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="330" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f9102d11-7911-4875-ac8c-bad176596b81"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[c) Retenue C.M.R…………………………………………………]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="347" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="587904b2-e040-42a8-bf09-9cd4573a837c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[d) Mutuelle secteur mutualiste]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="364" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="164f4c70-f567-4fed-99cf-24c77b22a33e"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[e) Mutuelle Caisse retraite et decés	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="381" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="5484fc9a-b5a2-4875-aeb8-f038308d9b84"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[f) Rachat C.M.R]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="151" y="426" width="255" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="452f82aa-f128-448d-94de-40e554093361"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[C-  Revenu Net imposable…………………………]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="151" y="446" width="176" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="5bbd528d-6ffb-446f-a0ff-31a80d909738"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[D-  Taux d'imposition]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="327" y="446" width="79" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="af332fb1-e2c7-43c0-b8a7-46788353d003"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[17%]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="463" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8805d7db-5dd2-47b3-8b83-f9ce3382239d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ * Somme à deduire (voir barême de l'IR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="479" width="99" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f8b7b5a7-7b71-44bc-abf2-79b4b6c01005"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ * charges familliales]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="182" y="479" width="132" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="5a70a310-c458-4ec4-b21e-0246df14070c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[xNbre d"enfants]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="151" y="498" width="176" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="812f63f5-f0ca-40f8-b0f8-d894ed45b7e6"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[E- Impot sur le Revenu Net]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="515" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8fb75b25-d490-4f7a-90c3-1b2ac90a37e1"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ * A deduire l'IR retenu à la source]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="530" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="7f611c2f-2b91-46a8-8b86-cf34427afcfb"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[ * A deduire l'IR retenu sur compléments de salaire déjà perçus]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="151" y="547" width="176" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3bfec530-889f-4878-b0b5-00b050c2b8a4"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[F-   L' Impot sur le Revenu (IR)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="59" y="564" width="169" height="20" uuid="8860e135-d2f4-46b0-87f6-331d9c02b0c4"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Détermination du net à percevoir : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="227" y="564" width="87" height="20" uuid="f7b97c1e-19ae-423b-9031-c04087ede025"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[(A-F)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="579" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="9497c856-0dc0-4ef9-a37d-232d14918678"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[  *  Montant des heures supplémentaires(vacation) :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="19" y="594" width="309" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="7838e0af-cca9-470b-ac59-29aa3f6e2323"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[  *  IR (arrondi au chiffre superieur)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="407" y="564" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="94ee344c-8933-49f2-ae1a-16ee4515869b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="579" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="60afbab7-67f5-4c94-ab2a-f2a6fcee356d"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nbr_heure} * $P{taux}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="594" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="adf4c35c-c9fa-4413-a19f-079a956a37e7"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Math.floor(Math.abs( (Math.abs(($P{charge_familiale} * $P{nbr_enfant}) - ($P{somme_deduire}) - (0.17 * Math.abs(($P{salaire_annuel_brut} - $P{allocation_familial} + $P{brut_additionner} + ($P{nbr_heure} * $P{taux})) - ($P{amo} + $P{retenue_cmr} + $P{mutulelle_mutualiste} + $P{mutuelle_caisse} + $P{rachat_cmr}))))) - $P{ir_source} - $P{ir_complement} ))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="610" width="99" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="10f0cb24-e30c-4b8a-8e56-73235fe91be2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Net à payer : ]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="610" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="b38e2188-fe04-4ffa-9cfd-15a80ab12d2b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="true" isItalic="true" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[Math.abs( ($P{nbr_heure} * $P{taux}) - (Math.floor(Math.abs( (Math.abs(($P{charge_familiale} * $P{nbr_enfant}) - ($P{somme_deduire}) - (0.17 * Math.abs(($P{salaire_annuel_brut} - $P{allocation_familial} + $P{brut_additionner} + ($P{nbr_heure} * $P{taux})) - ($P{amo} + $P{retenue_cmr} + $P{mutulelle_mutualiste} + $P{mutuelle_caisse} + $P{rachat_cmr}))))) - $P{ir_source} - $P{ir_complement} ))) )]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="625" width="162" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="9a2c26c0-a9a0-4a91-bab1-c8fc8b0bcf0f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Memoire Arrêtée à la somme de :  ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="182" y="625" width="325" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="a3996d57-c890-4f53-9bb0-bc8dca703c3f"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Huit Mille Neuf Cent Soixante Quatre Dirhams.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="198" y="643" width="99" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0e2a4e7e-8f82-42a4-b2a2-bd7428ff591c"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Marrakech, le :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="660" width="132" height="20" uuid="0e4bfc5e-b940-4b23-bafc-122b0f82ef23"/>
+				<textElement>
+					<font fontName="Times New Roman" size="12" isBold="true" isItalic="true"/>
+				</textElement>
+				<text><![CDATA[Le Sous Ordonnateur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="20" y="109" width="89" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="e387bb05-00a8-406f-ae99-b047eff505ff"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Enfant à charge : ]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Transparent" x="151" y="35" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="3ee8f9b3-18d9-4669-aa9d-ff2aa496d0b2"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nomComplet}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="151" y="55" width="100" height="20" uuid="b222c0bc-9381-4f81-b98a-95ee784c33e4"/>
+				<textElement>
+					<font fontName="Times New Roman"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mois}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="389" y="35" width="118" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="e4796993-e931-4e2e-8d69-024aebd22b7d"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{cin_ppr}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="117" y="72" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="c7fe07d5-2018-43f4-a639-6e0a14bde717"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{grade}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="64" y="89" width="52" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="a1dc139b-6b51-466b-9514-a125a874d007"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{echelle}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="175" y="88" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="dfcb3062-039f-42e9-bebd-539786cf6e05"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{echelon}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement mode="Transparent" x="109" y="109" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="44e775d7-8bfd-493a-bf12-8de2c41370ea"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Times New Roman" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nbr_enfant}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="131" y="156" width="43" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="07727324-704a-4ed7-8401-38c0b2c59b19"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nbr_heure}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="293" y="156" width="42" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="50ccae41-e63d-483e-bef9-67405eb474f0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{taux}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="193" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f1416434-26f9-4905-9282-84f00e340a5b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{salaire_annuel_brut}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="213" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="68c6a792-bfb9-49ff-aad1-1bba23ec4eaa"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{allocation_familial}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="233" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="a000eaf1-f8bd-4764-adca-46210724e43e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{brut_additionner}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="408" y="317" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="279984a2-e351-4335-9e07-288da6eaa358"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{amo}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="408" y="333" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="cb6146de-33a4-4043-951a-759e813b590a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{retenue_cmr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="408" y="347" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="7f91ddea-b780-450a-b970-5175eaf8714e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mutulelle_mutualiste}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="408" y="363" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="0dd3fdfe-71df-4a78-8a9d-623fe1aaeda9"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{mutuelle_caisse}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="408" y="381" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="4431859c-6225-40c8-b43c-d24ee4b8d0a0"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{rachat_cmr}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="462" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="e3518c7d-826e-4948-a956-8cc3d82ad76e"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{somme_deduire}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="118" y="478" width="64" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="44e17f98-e254-469e-8c1d-1bb36787f013"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="Arial" size="10" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{charge_familiale}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="513" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="8e7a8fd2-7cd1-4751-88d0-a2986b6d6bbc"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ir_source}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="407" y="527" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="6f078ba9-b422-4274-9a82-ed3ce3101c94"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ir_complement}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="296" y="643" width="100" height="20" uuid="ef49f5c1-b598-445b-8029-f80d56fd44e6"/>
+				<textElement>
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="408" y="297" width="98" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="f8a05370-bd66-4f22-83a9-6467db120d30"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{_frais_pro}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="151" y="401" width="100" height="20" uuid="5738e32d-bcf7-4f14-8060-b7ff00379443"/>
+				<textElement>
+					<font fontName="Times New Roman" size="11"/>
+				</textElement>
+				<text><![CDATA[Total de deduction]]></text>
+			</staticText>
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement mode="Transparent" x="408" y="401" width="100" height="20" forecolor="#000000" backcolor="#FFFFFF" uuid="07e5554d-cb9c-4e16-8ed7-0b31d07bcf65"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Top" rotation="None" markup="none">
+					<font fontName="Arial" size="11" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" pdfEncoding="Cp1252" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{amo} + $P{retenue_cmr} + $P{mutulelle_mutualiste} + $P{mutuelle_caisse} + $P{rachat_cmr}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band height="54" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="16" width="406" height="38" uuid="76ac21c3-a7bc-4634-8de2-f547b7e3b6f5"/>
+				<textElement>
+					<font fontName="Times New Roman" size="8"/>
+				</textElement>
+				<text><![CDATA[1) Voir détail au verso.
+2) A calculer uniquement pour le personnel Permanent, le personnel non peranent est soumis au taux specifique  17%
+    (voir code general des impots)]]></text>
+			</staticText>
+		</band>
+	</pageFooter>
+</jasperReport>

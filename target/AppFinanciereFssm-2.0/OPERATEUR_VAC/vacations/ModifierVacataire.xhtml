@@ -1,0 +1,149 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <body>
+
+        <ui:composition template="./../templateTest.xhtml">
+
+            <ui:define name="title">
+                Modifier vacataire
+            </ui:define>
+
+            <ui:define name="titlepanelLeft">
+                Modifier vacataire
+            </ui:define>
+
+            <ui:define name="titlepanelRight">
+                
+            </ui:define>
+
+            <ui:define name="titlepanel">
+                Modifier vacataire
+            </ui:define>
+
+            <ui:define name="content">
+                
+                <div class="x_content" style="display: block;">
+
+                    <p>les étapes a suivre pour modifier un dossier d'un vacataire</p>
+
+
+                    <h:form id="form1">
+
+                        <p:wizard flowListener="#{dossierprovisoirController.onFlowProcess}" style="font-size: 14px;">
+                            <p:tab id="personal" title="Intervenant">
+                                <p:panel header="Entrer les informations de l'intervenant a modifier" id="upd">
+                                    <p:messages />
+                                    <p:panelGrid columns="2" >
+                                        <p:outputLabel value="CIN PPR : " for="cinPpr" />
+                                        <p:inputText id="cinPpr" value="#{dossiervacataireController.selected.cinPpr.cinPpr}" title="#{bundle.CreateIntervenantTitle_cinPpr}" required="true" requiredMessage="Entrer CIN PPR de l'intervenant" />
+                                        <p:outputLabel value="Nom complet : " for="nomComplet" />
+                                        <p:inputText id="nomComplet" value="#{dossiervacataireController.selected.cinPpr.nomComplet}" title="#{bundle.CreateIntervenantTitle_nomComplet}" />
+                                        <p:outputLabel value="Nom arabe : " for="nomArabe" />
+                                        <p:inputText id="nomArabe" value="#{dossiervacataireController.selected.cinPpr.nomArabe}" title="#{bundle.CreateIntervenantTitle_nomArabe}" />
+                                        <p:outputLabel value="Telephone : " for="telephone" />
+                                        <p:inputText id="telephone" value="#{dossiervacataireController.selected.cinPpr.telephone}" title="#{bundle.CreateIntervenantTitle_telephone}" />
+                                        <p:outputLabel value="Email : " for="mail" />
+                                        <p:inputText id="mail" value="#{dossiervacataireController.selected.cinPpr.mail}" title="#{bundle.CreateIntervenantTitle_mail}" />
+                                        <p:outputLabel value="Banque : " for="banque" />
+                                        <p:inputText id="banque" value="#{dossiervacataireController.compte.bc}" title="banque" />
+                                        <p:outputLabel value="RIP : " for="rip" />
+                                        <p:inputText id="rip" value="#{dossiervacataireController.compte.rib}" title="Rip" />
+                                        
+                                    </p:panelGrid>
+                                </p:panel>
+                            </p:tab>
+
+
+                            <p:tab id="address" title="Dossier Vacataire">
+                                <p:panel header="entrer les détails du vacataire a modifier">
+                                    <p:messages />
+                                    <p:panelGrid columns="2">
+                                        
+                                        <p:outputLabel value="Nombre heures : " for="nbrHeures" />
+                                        <p:inputText id="nbrHeures" value="#{dossiervacataireController.selected.nbrHeures}" title="#{bundle.CreateDossiervacataireTitle_nbrHeures}" converterMessage="Entrer un nombre entier" />
+                                        <p:outputLabel value="Mois : " for="mois" />
+                                       
+                                        
+                                        <h:selectOneMenu id="mois" value="#{dossiervacataireController.selected.mois}" styleClass="form-control">
+                                            <f:selectItem itemValue="Janvier" />
+                                            <f:selectItem itemValue="Février" />
+                                            <f:selectItem itemValue="Mars" />
+                                            <f:selectItem itemValue="Avril" />
+                                            <f:selectItem itemValue="Mai" />
+                                            <f:selectItem itemValue="Juin" />
+                                            <f:selectItem itemValue="Juillet" />
+                                            <f:selectItem itemValue="Août" />
+                                        </h:selectOneMenu>
+                                        <p:outputLabel value="Semestre : " for="semestre" />
+                                        <p:inputText id="semestre" value="#{dossiervacataireController.selected.semestre}" title="#{bundle.CreateDossiervacataireTitle_semestre}" />
+                                        
+                                        <p:outputLabel value="NET : " for="net" />
+                                        <p:inputText id="net" value="#{dossiervacataireController.selected.net}" title="#{bundle.CreateDossiervacataireTitle_net}" converterMessage="Entrer un nombre réel">
+                                            <f:validateDoubleRange minimum="0.0" maximum="99999999999.9" />
+                                        </p:inputText>
+                                        <p:outputLabel value="IR : " for="ir" />
+                                        <p:inputText id="ir" value="#{dossiervacataireController.selected.ir}" title="#{bundle.CreateDossiervacataireTitle_ir}"  converterMessage="Entrer un nombre réel">
+                                            <f:validateDoubleRange minimum="0.0" maximum="99999999999.9" />
+                                        </p:inputText>
+                                        
+                                        <p:outputLabel value="Grade : " for="idGrade" />
+                                        <h:selectOneMenu id="idGrade" value="#{dossiervacataireController.selected.idGrade}" valueChangeListener="#{dossiervacataireController.calculnet}" styleClass="form-control">
+                                            <f:selectItems value="#{graddiplomeController.itemsAvailableSelectOne}"
+                                                           var="idGradeItem"
+                                                           itemValue="#{idGradeItem}"
+                                                           itemLabel="#{idGradeItem.intituleGrade}"/>
+                                             <f:ajax event="valueChange" render="net"  />
+                                        </h:selectOneMenu>
+
+                                    </p:panelGrid>
+                                </p:panel>
+                            </p:tab>
+
+                            <p:tab id="confirm" title="Confirmation">
+                                <p:panel header="Confirmation">
+                                    <h:panelGrid id="confirmation"  columns="2" cellpadding="20" cellspacing="15" style="font-size: 14px;color: #96A9B9;width: 30%;">
+                                        
+                                            <p:outputLabel value="CIN PPR :  " />
+                                            <p:outputLabel value="#{dossiervacataireController.selected.cinPpr}" />
+
+                                            <p:outputLabel value="Nom complet :  " />
+                                            <p:outputLabel value="#{dossiervacataireController.selected.cinPpr.nomComplet}" />
+
+                                            <p:outputLabel value="Nom arabe :  " />
+                                            <p:outputLabel value="#{dossiervacataireController.selected.cinPpr.nomArabe}" />
+                                            <p:separator /><br />
+                                            <p:outputLabel value="Nombre heures :  " />
+                                            <p:outputLabel value="#{dossiervacataireController.selected.nbrHeures}" />
+
+                                            <p:outputLabel value="NET : " />
+                                            <p:outputLabel value="#{dossiervacataireController.selected.net}" />
+
+                                            <p:outputLabel value="IR :  " />
+                                            <p:outputLabel value="#{dossiervacataireController.selected.ir}" />
+                                        
+                                    </h:panelGrid>
+                                    <br />
+                                    <br />
+                                    <p:commandButton actionListener="#{dossiervacataireController.wizardUpdate()}" value="Modifier" update=":growl" process="@this" style="background: #67c2ef;color: white;"/>
+                                    <br />
+                                    <br />
+                                </p:panel>
+                            </p:tab>
+
+                        </p:wizard>
+                    </h:form>
+
+                </div>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

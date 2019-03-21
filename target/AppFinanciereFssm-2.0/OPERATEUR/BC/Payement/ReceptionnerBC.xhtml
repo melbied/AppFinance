@@ -1,0 +1,189 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:body onload="#{boncommandeController.allItemesValides}">
+
+        <ui:composition template="./../../templateTest.xhtml">
+
+
+            <ui:define name="content">
+ <ul class="nav nav-tabs" id="myTab">
+  <li class="active"><a href="#PAYER">Réceptionner</a></li>
+  <li><a href="#BCP">Consulter les Commandes Receptionnées</a></li>
+  <li><a href="#IMPRESSION">Impression Bon de réception</a></li>
+ 
+</ul>
+                <div class="tab-content">
+  <div class="tab-pane active" id="PAYER">    
+      
+                <h:form id="ReceptionnerBCCreateForm" >
+                    <p:growl id="message" life="2000" />
+                    <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" widgetVar="confirmation" closeOnEscape="false" closable="true">
+                        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" onclick="confirmation.hide()" icon="ui-icon-check" />
+                        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" onclick="confirmation.hide()" icon="ui-icon-close" />
+                    </p:confirmDialog>
+                         <p:dialog  id="dialogueArt" header="Gestion des Expressions de Besoin validées" dynamic="true" widgetVar="BoncommandeArtViewDialog" showEffect="explode"  width="75%" modal="true">
+                        <h:panelGroup id="displayArt">
+                            <p:panelGrid columns="5" rendered="#{boncommandeController.current != null}">
+                             
+                                <h:form id="LBCArtform" >
+                                    <p:growl id="msgs" life="2000" showDetail="true" />
+                                    <p:dataTable   id="ligneBCedit" var="item"  value="#{boncommandeController.LigneByIDBC(boncommandeController.current.idBC)}" editable="true" editMode="cell" widgetVar="cellLigneBC" >
+   
+                                    <p:ajax event="cellEdit" listener="#{lignecommandeController.onCellEdit}" process=":ReceptionnerBCCreateForm:message" update=":ReceptionnerBCCreateForm:message" />
+                                    
+
+
+                                    <p:column headerText="Article">
+                                        <h:outputText value="#{articleController.getArticle(item.idArticle).description}" style="font-size: 20px"/>
+                                </p:column>
+                                <p:column headerText="PU negocié /MAD">
+                                    <h:outputText value="#{item.pu}" style="font-size: 20px"/>
+                                </p:column>
+                                
+                                    
+                                <p:column headerText="Quantité"   >
+                                <p:cellEditor>
+                                    <f:facet name="output">
+                                      <span class="ui-button-icon-left ui-icon ui-c ui-icon-pencil" style="float: right"></span>
+                                      <h:outputText value="#{item.quantite} " style="color: #75a353;background-color: lightcyan;font-size: 25px;font-weight: bold; float: left; " />  </f:facet> 
+                                      <f:facet name="input"><p:inputText binding="#{input1}" widgetVar="QTTinput" id="modelInput" value="#{item.quantite}"  valueChangeListener="#{lignecommandeController.onQuantityChange}" style="width:96%">
+                                                 <f:attribute name="idligne" value="#{item.idLigne}" />
+                                                 <f:ajax event="valueChange" render="HT"  />
+                                             </p:inputText>
+                                         
+                                         </f:facet>
+
+                                         
+                                </p:cellEditor>
+                                </p:column>
+                                     <p:column headerText="Total HT /MAD">
+                                         <h:outputText value="#{item.montant}"  id="HT" style="color: #363636;font-weight: bold ;font-size: 25px; background-color: lightcyan;" />
+                                </p:column>
+                                      </p:dataTable>
+ 
+                                </h:form>
+                                
+                            </p:panelGrid>
+                            
+                        </h:panelGroup>
+                    </p:dialog>
+                    <p:dialog id="dialogue" header="Gestion Bon Commande" widgetVar="BoncommandeViewDialog" showEffect="explode"    modal="true">
+                        <center> 
+                            <h:panelGroup id="display" >
+                            <p:panelGrid columns="2" rendered="#{boncommandeController.current != null}">
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_idBC}" />
+                                <h:outputLabel value="#{boncommandeController.current.idBC}" title="#{bundle.ViewBoncommandeTitle_idBC}" />
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_dateCommande}" />
+                                <h:outputLabel value="#{boncommandeController.current.dateCommande}" title="#{bundle.ViewBoncommandeTitle_dateCommande}" >
+                                    <f:convertDateTime pattern="MM/dd/yyyy" />
+                                </h:outputLabel>
+                               
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_dateReception}" />
+                                <p:calendar  id="dateCommande" pattern="MM/dd/yyyy" value="#{boncommandeController.dateRecep}" title="#{bundle.EditBoncommandeTitle_dateCommande}"  />
+                              
+                                <h:outputLabel value="#{bundle.ViewBoncommandeLabel_montant}" />
+                                <h:outputLabel value="#{boncommandeController.current.montant}" title="#{bundle.ViewBoncommandeTitle_montant}" />
+                              
+                                
+                            </p:panelGrid>
+                            <p:panelGrid columns="2"  >
+                               
+                                <p:panel><h:commandButton   actionListener="#{boncommandeController.RECEPTONNERbc(boncommandeController.current.idBC)}" value="Receptionner" styleClass="btn btn-success" /></p:panel>
+
+                              
+
+                            </p:panelGrid>
+                        </h:panelGroup>
+                        </center>
+                    </p:dialog>
+                    
+                    <div class="col-md-12 col-sm-12">
+                        <div class="panel panel-info">
+                            <div class="panel-heading">
+                                Liste des bons de commande réceptionné à payé 
+                            </div>
+                            <div class="panel-body">
+                             
+                                <div class="table-responsive">
+                                    <div class="table-responsive">
+                                        <p:dataTable id="datalist" value="#{boncommandeController.allItemesVALIDE}" var="item" style="border:solid 1px"
+                                                     selectionMode="single" selection="#{boncommandeController.current}"
+                                                     paginator="true"
+                                                     rowKey="#{item.idBC}"
+                                                     >
+                                            <p:ajax event="rowSelect" listener="#{boncommandeController.remplireFormulaireGBC()}" update="@form" process="@this"/>
+                                            <p:ajax event="rowUnselect" listener="#{boncommandeController.remplireFormulaireGBC()}" update="@form" process="@this"/>
+                                            
+                                            <p:column headerText="Num bon de commande">
+                                                <h:outputText value="#{item.idBC}"/>
+                                            </p:column>
+                                            <p:column headerText="Fournisseur">
+                                                <h:outputText value="#{fournisseurController.getFournisseur(item.idFournisseur).nom}"/>
+                                            </p:column>
+                                            <p:column headerText="Demandeur">
+                                                <h:outputText value="#{item.nomComplet}"/>
+                                            </p:column>
+
+                                            <p:column headerText="Date commande">
+                                                <h:outputText value="#{item.dateCommande}">
+                                                    <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                                                </h:outputText>
+                                            </p:column>
+                                             <p:column headerText="Montant TTC">
+                                                 <h:outputText value="#{item.montant}"/>
+                                            </p:column>
+
+                                            <p:column headerText="#{bundle.ListBoncommandeTitle_etat}">
+                                                <h:outputText value="#{item.etat}"/>
+                                            </p:column>
+
+                                                <p:column headerText="Confirmer la réception">
+                                                    <p:commandButton icon="fa-check-circle" action="#{boncommandeController.remplireFormulaireGBC()}" type="button" onclick="PF('BoncommandeViewDialog').show();"  class="btn btn-success btn-lg"  id="viewButton"  disabled="#{empty boncommandeController.current}" >
+                                                </p:commandButton>
+                                                    <p:commandButton icon="ui-icon-search"  action="#{boncommandeController.remplireFormulaireGBC()}" type="button" onclick="PF('BoncommandeArtViewDialog').show();"  title="Valider les Articles" class="btn btn-success btn-lg" >
+                                                </p:commandButton>
+                                            </p:column>
+                                            <p:column headerText="">
+                                                <p:commandButton id="ajaxdelete"  action="#{boncommandeController.performDestroyBCG()}" icon="ui-icon-trash" class="btn btn-danger btn-lg" update="@form">
+                                                    <p:confirm header="Confirmation de suppression" message="voulez-vous vraiment supprimer ces informations?" icon="ui-icon-alert" />
+                                                </p:commandButton>
+                                            </p:column>
+
+                                        </p:dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </h:form> 
+      
+  </div>
+
+ <div class="tab-pane" id="BCP">
+    <ui:include src="BCReçu.xhtml"/> 
+  </div>
+  <div class="tab-pane" id="IMPRESSION"> <ui:include src="ImprimerBR.xhtml"/> </div>
+
+<div class="tab-pane" id="non">
+   jj
+    </div>
+  </div>
+                <script>
+                    $('#myTab a').click(function (e) {
+                  e.preventDefault();
+                  $(this).tab('show');
+                })
+
+                </script>
+            </ui:define>
+
+        </ui:composition>
+
+    </h:body>
+</html>

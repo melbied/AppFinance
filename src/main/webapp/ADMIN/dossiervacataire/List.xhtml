@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+        <ui:composition template="../templateTest.xhtml">
+
+<ui:define name="titlepanelLeft">
+               Valider les vacataires
+            </ui:define>
+
+         
+
+            <ui:define name="titlepanel">
+                Valider les vacataires
+            </ui:define>
+
+
+      
+
+        <ui:define name="content">
+            <h:form id="DossiervacataireListForm">
+                <p:panel header="#{bundle.ListDossiervacataireTitle}">
+                    <p:dataTable id="datalist" value="#{dossiervacataireController.items}" var="item"
+                                 selectionMode="single" selection="#{dossiervacataireController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.idDossier}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="viewButton editButton"/>
+                        <p:ajax event="rowUnselect" update="viewButton editButton"/>
+
+                        
+                                  <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Nom du vacataire"/>
+                            </f:facet>
+                                      <h:outputText value="#{item.cinPpr.nomComplet}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDossiervacataireTitle_nbrHeures}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nbrHeures}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDossiervacataireTitle_mois}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.mois}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDossiervacataireTitle_semestre}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.semestre}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDossiervacataireTitle_dateCreance}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateCreance}">
+                                <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDossiervacataireTitle_net}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.net}"/>
+                        </p:column>
+                       
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDossiervacataireTitle_statutDossier}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.statutDossier}"/>
+                        </p:column>
+                      
+
+                        <f:facet name="footer">
+                            
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="Afficher" update=":DossiervacataireViewForm" oncomplete="PF('DossiervacataireViewDialog').show()" disabled="#{empty dossiervacataireController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="Valider" update=":DossiervacataireEditForm" oncomplete="PF('DossiervacataireEditDialog').show()" disabled="#{empty dossiervacataireController.selected}"/>
+                            
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
+            </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
+        </ui:define>
+    </ui:composition>
+
+</html>

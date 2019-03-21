@@ -1,0 +1,335 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report4" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="88f261e3-0250-433f-9d56-2f11f13c4b44">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="132"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<parameter name="BC" class="java.lang.Integer">
+		<defaultValueExpression><![CDATA[$F{boncommande_idBC}]]></defaultValueExpression>
+	</parameter>
+	<queryString>
+		<![CDATA[SELECT
+     boncommande.`idBC` AS boncommande_idBC,
+     boncommande.`idFournisseur` AS boncommande_idFournisseur,
+     boncommande.`idUser` AS boncommande_idUser,
+     boncommande.`idDotation` AS boncommande_idDotation,
+     boncommande.`dateCommande` AS boncommande_dateCommande,
+     boncommande.`tva` AS boncommande_tva,
+     boncommande.`dateReception` AS boncommande_dateReception,
+     boncommande.`etat` AS boncommande_etat,
+     boncommande.`montant` AS boncommande_montant,
+     boncommande.`type` AS boncommande_type,
+     boncommande.`NomComplet` AS boncommande_NomComplet,
+     compte.`idCompte` AS compte_idCompte,
+     compte.`intitule` AS compte_intitule,
+     compte.`rap` AS compte_rap,
+     article.`idArticle` AS article_idArticle,
+     article.`description` AS article_description,
+     article.`pu` AS article_pu,
+     lignecommande.`idBC` AS lignecommande_idBC,
+     lignecommande.`idArticle` AS lignecommande_idArticle,
+     lignecommande.`idLigne` AS lignecommande_idLigne,
+     lignecommande.`quantite` AS lignecommande_quantite,
+     lignecommande.`pu` AS lignecommande_pu,
+     lignecommande.`montant` AS lignecommande_montant,
+     lignecommande.`Desc_besoin` AS lignecommande_Desc_besoin,
+     secteurprincipal.`idSecteurP` AS secteurprincipal_idSecteurP,
+     secteurprincipal.`designation` AS secteurprincipal_designation,
+     secteur.`idSecteur` AS secteur_idSecteur,
+     secteur.`idSecteurP` AS secteur_idSecteurP,
+     secteur.`intituleSecteur` AS secteur_intituleSecteur,
+     dotationsecteur.`idCompte` AS dotationsecteur_idCompte,
+     dotationsecteur.`idSecteur` AS dotationsecteur_idSecteur,
+     dotationsecteur.`idDotation` AS dotationsecteur_idDotation,
+     dotationsecteur.`montantInitial` AS dotationsecteur_montantInitial,
+     dotationsecteur.`reliquat` AS dotationsecteur_reliquat
+FROM
+     `boncommande` boncommande INNER JOIN `lignecommande` lignecommande ON boncommande.`idBC` = lignecommande.`idBC`
+     INNER JOIN `article` article ON lignecommande.`idArticle` = article.`idArticle`
+     INNER JOIN `dotationsecteur` dotationsecteur ON boncommande.`idDotation` = dotationsecteur.`idDotation`
+     INNER JOIN `compte` compte ON dotationsecteur.`idCompte` = compte.`idCompte`
+     INNER JOIN `secteur` secteur ON dotationsecteur.`idSecteur` = secteur.`idSecteur`
+     INNER JOIN `secteurprincipal` secteurprincipal ON secteur.`idSecteurP` = secteurprincipal.`idSecteurP`
+
+WHERE boncommande.`idBC` = $P{BC}]]>
+	</queryString>
+	<field name="boncommande_idBC" class="java.lang.Integer"/>
+	<field name="boncommande_idFournisseur" class="java.lang.Integer"/>
+	<field name="boncommande_idUser" class="java.lang.Integer"/>
+	<field name="boncommande_idDotation" class="java.lang.Integer"/>
+	<field name="boncommande_dateCommande" class="java.sql.Date"/>
+	<field name="boncommande_tva" class="java.lang.Integer"/>
+	<field name="boncommande_dateReception" class="java.sql.Date"/>
+	<field name="boncommande_etat" class="java.lang.String"/>
+	<field name="boncommande_montant" class="java.math.BigDecimal"/>
+	<field name="boncommande_type" class="java.lang.String"/>
+	<field name="boncommande_NomComplet" class="java.lang.String"/>
+	<field name="compte_idCompte" class="java.lang.Integer"/>
+	<field name="compte_intitule" class="java.lang.String"/>
+	<field name="compte_rap" class="java.math.BigDecimal"/>
+	<field name="article_idArticle" class="java.lang.Integer"/>
+	<field name="article_description" class="java.lang.String"/>
+	<field name="article_pu" class="java.math.BigDecimal"/>
+	<field name="lignecommande_idBC" class="java.lang.Integer"/>
+	<field name="lignecommande_idArticle" class="java.lang.Integer"/>
+	<field name="lignecommande_idLigne" class="java.lang.Integer"/>
+	<field name="lignecommande_quantite" class="java.lang.Integer"/>
+	<field name="lignecommande_pu" class="java.math.BigDecimal"/>
+	<field name="lignecommande_montant" class="java.math.BigDecimal"/>
+	<field name="lignecommande_Desc_besoin" class="java.lang.String"/>
+	<field name="secteurprincipal_idSecteurP" class="java.lang.Integer"/>
+	<field name="secteurprincipal_designation" class="java.lang.String"/>
+	<field name="secteur_idSecteur" class="java.lang.Integer"/>
+	<field name="secteur_idSecteurP" class="java.lang.Integer"/>
+	<field name="secteur_intituleSecteur" class="java.lang.String"/>
+	<field name="dotationsecteur_idCompte" class="java.lang.Integer"/>
+	<field name="dotationsecteur_idSecteur" class="java.lang.Integer"/>
+	<field name="dotationsecteur_idDotation" class="java.lang.Integer"/>
+	<field name="dotationsecteur_montantInitial" class="java.lang.Double"/>
+	<field name="dotationsecteur_reliquat" class="java.lang.Double"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="141" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="3" width="158" height="20" uuid="e33ccf1c-2e3e-4747-981c-71b6abbcc840"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[UNIVERSITE CADI AYYAD ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="23" width="158" height="20" uuid="60c15ac9-44c8-4604-8aa2-88f77dbc5d06"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[FACULTE DES SCIENCES]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="43" width="158" height="20" uuid="28b603fa-6aa4-4e48-86a1-33df8de02b98"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[SEMLALIA-MARRAKECH ]]></text>
+			</staticText>
+			<image>
+				<reportElement x="156" y="3" width="195" height="120" uuid="d2e67aef-65aa-4b73-93a7-5c30e8468af3"/>
+				<imageExpression><![CDATA["entete.PNG"]]></imageExpression>
+			</image>
+			<staticText>
+				<reportElement x="357" y="3" width="53" height="15" uuid="d98248df-ad19-4524-bed8-2f0a8eadb939"/>
+				<textElement>
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[EXERCICE ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="23" width="53" height="15" uuid="3d8f2ebc-2449-468c-8a1c-9cca4cdfc284"/>
+				<textElement>
+					<font fontName="Arial" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[COMPTE N°]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="357" y="73" width="53" height="20" uuid="bc266c74-c03e-45f8-ba19-7a58f93e0948"/>
+				<textElement>
+					<font fontName="Arial" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Secteur]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="73" width="135" height="30" uuid="b96d058d-e169-4c63-84b4-e41faa2a6a56"/>
+				<textElement textAlignment="Center"/>
+				<text><![CDATA[Bd.PRINCE MY ABDELLAH MARRAKECH ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="43" width="145" height="25" uuid="ca2dba87-4638-4a17-b5dc-0353c8d34714"/>
+				<textFieldExpression><![CDATA[$F{compte_intitule}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="73" width="145" height="20" uuid="1fb9bb78-7618-4c8b-8f3a-782a5df0b1a1"/>
+				<textFieldExpression><![CDATA[$F{secteurprincipal_designation}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="93" width="145" height="30" uuid="a339729f-7ce2-4942-8b59-9533ce9194d0"/>
+				<textFieldExpression><![CDATA[$F{secteur_intituleSecteur}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="410" y="23" width="124" height="15" uuid="9b550674-8f60-483c-9708-2e6b658882c4"/>
+				<textFieldExpression><![CDATA[$F{compte_idCompte}]]></textFieldExpression>
+			</textField>
+			<textField pattern="yyyy">
+				<reportElement x="410" y="3" width="100" height="15" uuid="0168a036-938f-499f-8589-57abc90ff18b"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="357" y="43" width="53" height="20" uuid="ebea0d4f-1180-45fc-9a8f-626c333e000a"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Budget]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="103" width="100" height="20" uuid="728b5429-5aef-4be7-81a7-3bf589d2b633"/>
+				<text><![CDATA[TEL : 505°24 344649 ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="35" y="121" width="100" height="20" uuid="6b574bce-3a0e-48e9-8233-a5da11702b91"/>
+				<text><![CDATA[FAX 05244337405]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="106" splitType="Stretch">
+			<textField>
+				<reportElement x="305" y="13" width="183" height="37" uuid="34c9eb77-e9c5-4c12-b5a9-173816871817"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="116" y="13" width="179" height="37" uuid="222a6936-1448-4c92-a4b1-0884024008f9"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Expression de besoin N°:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="410" y="64" width="145" height="20" uuid="3ea90500-70dd-4c3a-b6fb-d33aea02037b"/>
+				<textFieldExpression><![CDATA[$F{boncommande_dateCommande}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="336" y="64" width="74" height="20" uuid="00ffb056-6886-4cf5-93e4-7981d0431e28"/>
+				<text><![CDATA[Date demande:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="10" y="64" width="100" height="20" uuid="c06878e0-35b0-41b3-b601-17cb25c0ee71"/>
+				<text><![CDATA[Nom demandeur :]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="116" y="64" width="115" height="30" uuid="1955d01e-52fe-4ef9-a804-f5287c205de1"/>
+				<textFieldExpression><![CDATA[$F{boncommande_NomComplet}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="32" splitType="Stretch">
+			<staticText>
+				<reportElement x="478" y="4" width="56" height="20" uuid="1fc64602-fced-4904-bbd6-e07d812b91c6"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1"/>
+				<textElement>
+					<font size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantité]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="9978cac3-5eb2-47a9-a146-3ac3b12de85f"/>
+			</line>
+			<line>
+				<reportElement x="156" y="0" width="1" height="32" uuid="9d6c4fab-fbe1-4021-a8fd-ed1a25fec226"/>
+			</line>
+			<staticText>
+				<reportElement x="23" y="3" width="122" height="21" uuid="1b1c329f-15cf-4ddd-bcd2-6fd09089b8a3"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Designation]]></text>
+			</staticText>
+			<line>
+				<reportElement x="464" y="0" width="1" height="32" uuid="000d8d8e-8a0d-47d5-a3c6-4d01e07eb1b1"/>
+			</line>
+			<staticText>
+				<reportElement x="247" y="4" width="100" height="20" uuid="3f313b6e-f7e5-43f4-9316-6c91a905bef3"/>
+				<box topPadding="1" leftPadding="1" bottomPadding="1" rightPadding="1"/>
+				<textElement>
+					<font size="14" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Besoins]]></text>
+			</staticText>
+			<line>
+				<reportElement x="555" y="0" width="1" height="32" uuid="70abdaba-6fdf-4d55-a305-ec7d9d082c62"/>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="1" height="32" uuid="0f5b3d5f-a3ab-4764-9ce4-9dbd8bf42345"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="38" splitType="Stretch">
+			<line>
+				<reportElement x="0" y="0" width="555" height="1" uuid="860ce80c-e6e4-445a-9745-d25b2dbaec44"/>
+			</line>
+			<line>
+				<reportElement x="464" y="0" width="1" height="38" uuid="b6a67843-cc0a-4444-992d-ed41d1361ced"/>
+			</line>
+			<line>
+				<reportElement x="156" y="0" width="1" height="37" uuid="d3bdec8f-c07b-4aea-9307-944efba99157"/>
+			</line>
+			<textField>
+				<reportElement x="10" y="6" width="146" height="27" uuid="20f9199d-2682-4a91-b22b-9fb700773a1d"/>
+				<textElement textAlignment="Justified">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{article_description}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="478" y="1" width="56" height="32" uuid="af51c851-6120-435c-91c3-9525f50d1c4d"/>
+				<textElement textAlignment="Justified">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{lignecommande_quantite}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="168" y="1" width="281" height="36" uuid="2151baff-0d89-464f-8d50-d7222228ce49"/>
+				<textElement textAlignment="Justified"/>
+				<textFieldExpression><![CDATA[$F{lignecommande_Desc_besoin}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="1" height="38" uuid="50d19bf5-87ac-4c02-b804-b0463dda365a"/>
+			</line>
+			<line>
+				<reportElement x="555" y="0" width="1" height="37" uuid="e5834abc-3473-4b0d-9e1e-7c7c26fea4eb"/>
+			</line>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="5" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="182" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="0" width="555" height="179" uuid="70bf8215-a529-4885-9bf6-bfce4bead558"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="10" y="15" width="100" height="20" uuid="d64e7260-1030-4ca8-a008-ed88066e9f54"/>
+				<textElement>
+					<font isBold="true"/>
+				</textElement>
+				<text><![CDATA[Marrakech le:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="110" y="15" width="100" height="20" uuid="b0ec3b84-2b88-4961-964e-1be9f19a7472"/>
+				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="27" splitType="Stretch"/>
+	</summary>
+</jasperReport>
